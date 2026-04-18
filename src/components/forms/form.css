@@ -1,0 +1,41 @@
+/* form.css — imports main design tokens, adds form-specific overrides */
+/* All main styles are in index.css — yahan sirf extra rules hain */
+
+.tForm-image {
+  background: rgba(57,48,48,0.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ── Extra spacing for label → input pairs without a <form> wrapper ── */
+.form-container > label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── "Reset" ghost button (Principal) ── */
+.form-container button[style*="background: none"],
+.form-container button[style*="background:none"] {
+  background: transparent !important;
+  color: #4f46e5 !important;
+  border: 1.5px solid #4f46e5 !important;
+  box-shadow: none !important;
+}
+.form-container button[style*="background: none"]:hover,
+.form-container button[style*="background:none"]:hover {
+  background: #eef2ff !important;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    margin: 20px 16px;
+    padding: 28px 20px;
+  }
+}
