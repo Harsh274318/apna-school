@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import Context from '../../components/context/context'
+import Context from '../../components/context/Context'
 import Loading from '../../components/forms/Loading';
 import api from '../../api';
 import { toast } from 'react-toastify';

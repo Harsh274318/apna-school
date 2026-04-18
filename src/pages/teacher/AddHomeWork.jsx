@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify';
 import api from '../../api';
-import Context from '../../components/context/context';
+import Context from '../../components/context/Context';
 import Loading from '../../components/forms/Loading';
 
 const AddHomeWork = () => {

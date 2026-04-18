@@ -1,6 +1,6 @@
 // AllStudents.jsx
 import React, { useContext, useEffect } from 'react'
-import Context from '../../components/context/context'
+import Context from '../../components/context/Context'
 import api from '../../api';
 import { toast } from 'react-toastify';
 import Loading from '../../components/forms/Loading';
