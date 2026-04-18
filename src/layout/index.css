@@ -497,7 +497,7 @@ body {
 /* ============================================================ */
 .form-container {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   max-width: 500px;
   margin: 48px auto;
   padding: 40px 36px;
