@@ -3,6 +3,7 @@ import Context from '../../components/context/Context.jsx'
 import api from "../../api.js"
 import { toast } from 'react-toastify'
 import { AiOutlineDelete } from 'react-icons/ai'
+import Loading from '../../components/forms/Loading.jsx'
 
 
 const AllTeachers = () => {
@@ -54,7 +55,7 @@ const AllTeachers = () => {
   }
   return (<>
 
-
+    {apiData.loading && <Loading />}
     {!apiData.loading && teacher && teacher.map(item => (
 
       <div key={item._id} style={{
