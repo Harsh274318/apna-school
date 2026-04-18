@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Context from "./context";
+import Context from "./Context";
 
 const Provider = ({ children }) => {
     const [apiData, setApiData] = useState({ data: "", loading: "", error: "", posts: [], students: [], updateStudent: null })
