@@ -142,7 +142,8 @@ const CreateTeacher = () => {
                         Enter OTP
                     </label>
                     <input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
                         name="otp"
                         id="otp"
                         ref={otpRef}
@@ -182,7 +183,8 @@ const CreateTeacher = () => {
                         Class
                     </label>
                     <input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
                         min={1}
                         max={12}
                         id="class"
