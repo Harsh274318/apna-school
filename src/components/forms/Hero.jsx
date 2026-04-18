@@ -11,7 +11,7 @@ const Hero = () => {
     useEffect(() => {
         const path = location.pathname;
 
-        if (["/teacher-query", "/student"].includes(path)) {
+        if (["/teacher-query", "/student", "login"].includes(path)) {
             window.scrollTo({
                 top: document.documentElement.scrollHeight,
                 behavior: "smooth",
@@ -38,7 +38,7 @@ const Hero = () => {
                     <div className="Hero-tagLine">Learn Without <span className="Hero-diffrent-color">Limits</span>. Teach Without Barriers.</div>
                     <div className="Hero-aboutShort"> <span className="apna-school">{import.meta.env.VITE_SCHOOL_NAME}</span> unites students and teachers on one intelligent, easy-to-use platform designed for meaningful learning. It enables seamless communication, real-time progress tracking, and deeper engagement through interactive tools. By simplifying collaboration and providing actionable insights, it helps create a more connected, motivating, and joyful educational experience for everyone involved.</div>
                     <div className="Hero-conect-us-as-Student">
-                        <button className="Hero-study-btn left-btn" onClick={() => navigate("student")}>Start Learning</button>
+                        <button className="Hero-study-btn left-btn" onClick={() => navigate("/")}>Start Learning</button>
                         <button className="Hero-Know-btn left-btn">Know About Us</button>
                     </div>
                     <div className="Hero-happy-img-div">

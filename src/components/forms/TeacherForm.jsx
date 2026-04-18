@@ -29,7 +29,7 @@ const TeacherForm = () => {
 
         const now = Date.now();
 
-        // ⏱️ 15 sec throttle
+        
         if (now - lastSubmitTime < 15000) {
             alert("Please wait 15 seconds before submitting again.");
             return;
@@ -113,7 +113,7 @@ const TeacherForm = () => {
                         />
 
                         <button type="submit">Apply Now</button>
-                        <span className="RouteStude" onClick={() => navigate("/student")}> <h2> I am a student !</h2></span>
+                        <span style={{ fontSize: "2px" }} className="RouteStude" onClick={() => navigate("/")}> <h2> I am a student !</h2></span>
                     </form>
                 </div>
 

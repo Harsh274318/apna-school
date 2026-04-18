@@ -2,10 +2,11 @@
 /* All main styles are in index.css — yahan sirf extra rules hain */
 
 .tForm-image {
-  background: rgba(57,48,48,0.1);
+  background: url("https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1776509283/background_kjalod.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  backdrop-filter: blur(3px);
 }
 
 /* ── Extra spacing for label → input pairs without a <form> wrapper ── */

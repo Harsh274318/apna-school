@@ -39,7 +39,7 @@ const LoginForm = () => {
                 else if (role === "Teacher") navigate("/teacher");
                 else if (role === "Student") navigate("/student");
                 toast.success(res.data.data.message || "login Successfully");
-                    
+
                 console.log(res.data.data);
             })
             .catch((err) => {
@@ -55,23 +55,25 @@ const LoginForm = () => {
     };
     return (<>
         {obj.apiData.loading ? <Loading /> : <div className="tForm-image" id="floting">
-            <div className="form-container" >
-                {/* <button className="cut" id="cut" onClick={() => navigate(-1)}><RxCross2 /></button> */}
-                <form onSubmit={handleLogin}>
-                    <h2>Login Here </h2>
-                    <label htmlFor="email">Enter your registered EMAIL</label>
-                    <input type="email" id="email" ref={emailRef} />
+            <div className="login-outter">
+                <div className="form-container" >
+                    <button type="button" id="cross" onClick={() => navigate(-1)}> <RxCross2 /> </button>
+                    <form onSubmit={handleLogin}>
+                        <h2>Login Here </h2>
+                        <label htmlFor="email">Enter your registered EMAIL</label>
+                        <input type="email" id="email" ref={emailRef} />
 
-                    <label htmlFor="password">Enter Your Correct PASSWORD</label>
+                        <label htmlFor="password">Enter Your Correct PASSWORD</label>
 
 
-                    <div className="password-div"><input type={flag ? "password" : "text"} id="password" ref={passwordRef} className="passwordinput" />
-                        {/* <TbEyeCode /> */}
-                        <span id="toggle" onClick={() => setFlag(!flag)}>{flag ? <GiEyelashes className="close" /> : <GiEyeOfHorus className="close" />}</span>
+                        <div className="password-div"><input type={flag ? "password" : "text"} id="password" ref={passwordRef} className="passwordinput" />
+                            {/* <TbEyeCode /> */}
+                            <span id="toggle" onClick={() => setFlag(!flag)}>{flag ? <GiEyelashes className="close" /> : <GiEyeOfHorus className="close" />}</span>
 
-                    </div>
-                    <button type="submit"> Submit</button>
-                </form>
+                        </div>
+                        <button type="submit"> Submit</button>
+                    </form>
+                </div>
             </div>
         </div>}
     </>)

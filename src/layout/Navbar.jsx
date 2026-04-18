@@ -1,16 +1,18 @@
-import react, { useEffect } from "react";
+import react, { useEffect, useState } from "react";
 import "./nav.css"
 import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
+    const [flag, setFlag] = useState(false)
     const token = localStorage.getItem("token")
     let role = ""
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem("user"))
         role = localData?.role.toLowerCase()
-        
-    }, [])
+
+    }, [flag])
+
     const navigate = useNavigate()
     return (<>
         <div className="mainNav">
@@ -21,10 +23,10 @@ const Navbar = () => {
 
             <div className="pageLinks">
                 <button className="button"
-                    onClick={() => navigate("/")}
+                    onClick={() => { navigate("/") }}
                 >Home</button>
                 <button className="button"
-                    onClick={() => navigate("teacher")}
+                    onClick={() => navigate("teacher-query")}
                 >Contact us</button>
 
                 <button className="button">About</button>
@@ -32,7 +34,7 @@ const Navbar = () => {
 
             <div className="loginSignup">
                 {token ? <button className="button"
-                    onClick={() => navigate(`/${role}`)}
+                    onClick={() => { navigate(`/${role}`), setFlag(!flag) }}
                 >Desboard</button> : <button className="button"
                     onClick={() => navigate("/login")}
                 >Login</button>}
