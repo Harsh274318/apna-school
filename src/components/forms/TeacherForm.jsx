@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import "./form.css"
-import StudentForm from "./StudentForm";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 const TeacherForm = () => {
     const navigate = useNavigate()
@@ -41,7 +40,6 @@ const TeacherForm = () => {
 
         setLastSubmitTime(now);
 
-        // 🔄 reset form
         const emptyForm = {
             name: "",
             email: "",

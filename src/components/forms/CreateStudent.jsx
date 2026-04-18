@@ -2,8 +2,8 @@ import React, { useContext, useRef, useState } from 'react'
 import { CiImageOn } from 'react-icons/ci';
 import { GiEyelashes, GiEyeOfHorus } from 'react-icons/gi';
 import { toast } from 'react-toastify';
-import Context from '../context/context';
-import api from '../../api';
+import Context from '../context/Context.jsx';
+import api from '../../api.js';
 import { useNavigate } from 'react-router-dom';
 import { RxCross2 } from 'react-icons/rx';
 

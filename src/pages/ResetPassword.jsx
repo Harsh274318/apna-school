@@ -1,8 +1,8 @@
 import React, { useContext, useRef, useState } from 'react'
 import { GiEyelashes, GiEyeOfHorus } from 'react-icons/gi';
 import { toast } from 'react-toastify';
-import api from '../api';
-import Context from '../components/context/context';
+import api from '../api.js';
+import Context from '../components/context/Context.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const ResetPassword = () => {

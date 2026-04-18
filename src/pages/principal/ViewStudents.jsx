@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from 'react'
-import Context from '../../components/context/context';
+import Context from '../../components/context/Context.jsx';
 import { toast } from 'react-toastify';
-import api from '../../api';
-import Loading from '../../components/forms/Loading';
+import api from '../../api.js';
+import Loading from '../../components/forms/Loading.jsx';
 const ViewStudents = () => {
     const rollNumberRef = useRef();
     const classRef = useRef();

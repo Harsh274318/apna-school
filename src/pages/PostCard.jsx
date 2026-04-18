@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
-import api from "../api"
+import api from "../api.js"
 import { toast } from "react-toastify";
-import Context from "../components/context/context";
+import Context from "../components/context/Context.jsx";
 
 const categoryColors = {
     announcement: { bg: "#EEEDFE", color: "#3C3489" },

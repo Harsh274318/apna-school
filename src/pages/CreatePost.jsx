@@ -1,8 +1,8 @@
 import { useContext, useRef, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 import { toast } from "react-toastify";
-import api from "../api";
-import Context from "../components/context/context";
+import api from "../api.js";
+import Context from "../components/context/Context.jsx";
 import "./posts.css"
 
 

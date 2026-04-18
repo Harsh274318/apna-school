@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import { GiEyelashes, GiEyeOfHorus } from "react-icons/gi";
 import api from "../../api";
 import { toast } from "react-toastify";
-import Context from "../context/context";
+import Context from "../context/Context.jsx";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import { RxCross2 } from "react-icons/rx";

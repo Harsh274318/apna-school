@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GiEyelashes, GiEyeOfHorus } from "react-icons/gi";
 import { toast } from "react-toastify";
-import Loading from "./Loading";
+import Loading from "./Loading.jsx";
 import { RxCross2 } from "react-icons/rx";
 const PrincipalForm = () => {
     const navigate = useNavigate()

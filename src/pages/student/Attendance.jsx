@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
-import Context from '../../components/context/context';
-import api from '../../api';
+import Context from '../../components/context/Context.jsx';
+import api from '../../api.js';
 import { toast } from 'react-toastify';
 
 const Attendance = () => {

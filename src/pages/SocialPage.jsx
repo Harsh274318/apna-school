@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CreatePost from "./CreatePost";
-import Posts from "./Posts";
+import CreatePost from "./CreatePost.jsx";
+import Posts from "./Posts.jsx";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
 const SocialPage = () => {
     const [flag, setFlag] = useState(true)

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import LogOut from "../../layout/LogOut";
+import LogOut from "../../layout/LogOut.jsx";
 
 const StudentDashboard = () => {
     const navigate = useNavigate();

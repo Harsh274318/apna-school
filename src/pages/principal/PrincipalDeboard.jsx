@@ -1,11 +1,10 @@
 // src/pages/principal/PrincipalDeboard.jsx
 
 import React, { useContext, useState } from "react";
-import Context from "../../components/context/context";
-import AllTeachers from "./AllTeachers"
+import Context from "../../components/context/Context.jsx";
 import { Outlet, useNavigate } from "react-router-dom";
 import { FaBars, FaPlus } from "react-icons/fa";
-import LogOut from "../../layout/LogOut";
+import LogOut from "../../layout/LogOut.jsx";
 
 const PrincipalDesboard = () => {
     const data = useContext(Context);

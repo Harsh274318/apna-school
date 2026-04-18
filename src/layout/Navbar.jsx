@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-    // console.log(import.meta.env.VITE_SCHOOL_NAME)
     const token = localStorage.getItem("token")
-    // console.log(token)
     let role = ""
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem("user"))

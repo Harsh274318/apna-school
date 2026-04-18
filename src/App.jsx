@@ -9,7 +9,7 @@ import "./pages/posts.css"
 import "./layout/index.css"
 import "./layout/nav.css"
 import "./components/forms/loading.css"
-import CreateStudent from './components/forms/CreateStudent';
+
 
 
 

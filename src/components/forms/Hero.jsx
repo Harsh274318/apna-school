@@ -1,6 +1,6 @@
 import react, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../layout/navbar";
+import Navbar from "../../layout/Navbar.jsx";
 
 
 

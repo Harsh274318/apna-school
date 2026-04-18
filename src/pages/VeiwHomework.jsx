@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Context from "../components/context/context";
+import Context from "../components/context/Context.jsx";
 import { toast } from "react-toastify";
-import api from "../api";
-import AddSessions from "./principal/AddSessions";
+import api from "../api.js";
+import AddSessions from "./principal/AddSessions.jsx";
 
 const VeiwHomework = () => {
     const today = new Date().toLocaleDateString("en-CA", {

@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import api from "../api"
+import api from "../api.js"
 import { toast } from "react-toastify";
-import PostCard from "./PostCard";
-import Loading from "../components/forms/Loading";
-import Context from "../components/context/context";
+import PostCard from "./PostCard.jsx";
+import Loading from "../components/forms/Loading.jsx";
+import Context from "../components/context/Context.jsx";
 
 const categories = ["all", "study", "announcement", "news", "student", "general"];
 

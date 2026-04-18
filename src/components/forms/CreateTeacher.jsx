@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import api from "../../api";
 import { toast } from "react-toastify";
-import Context from "../context/context";
+import Context from "../context/Context.jsx";
 import { GiEyelashes, GiEyeOfHorus } from "react-icons/gi";
 import Loading from "./Loading";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
