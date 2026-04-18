@@ -6,7 +6,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  backdrop-filter: blur(3px);
+  /* backdrop-filter: blur(3px); */
 }
 
 /* ── Extra spacing for label → input pairs without a <form> wrapper ── */

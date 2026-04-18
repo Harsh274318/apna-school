@@ -17,7 +17,7 @@ const PostCard = ({ item }) => {
     const [showComments, setShowComments] = useState(false);
     const [liked, setLiked] = useState(item.likes.includes(user.id));
     const [likesCount, setLikesCount] = useState(item.likes.length);
-    const [comments, setComments] = useState(item.comments);
+    const [comments, setComments] = useState(item.comments || []);
     const badge = categoryColors[item.category] || categoryColors.general;
     const { apiData, setApiData } = useContext(Context)
 
@@ -34,10 +34,12 @@ const PostCard = ({ item }) => {
         e.preventDefault();
         if (!commentRef.current.value.trim()) return toast.error("Write a comment");
         api.post(`/social/post/${item._id}/comment`, {
-            message: commentRef.current.value.trim()
+            message: commentRef.current.value.trim(),
+            userUrl: user.url
         })
             .then(res => {
-                setComments(res.data.data.comments);
+                const updated = res.data.data;
+                if (Array.isArray(updated)) setComments(updated);
                 commentRef.current.value = "";
                 toast.success("Comment added");
             })
@@ -56,9 +58,6 @@ const PostCard = ({ item }) => {
             .catch(err => toast.error(err?.message || "Something is wrong"));
     }
     function handleDeleteComment(commentId) {
-        // console.log("URL:", `/social/post/${item._id}/${commentId}/comment`);
-        // console.log("commentId:", commentId);
-        // console.log("postId:", item._id);
         api.delete(`/social/post/${item._id}/${commentId}/comment`)
             .then(() => {
                 setComments(prev => prev.filter(c => c._id.toString() !== commentId.toString()));
@@ -66,13 +65,12 @@ const PostCard = ({ item }) => {
             })
             .catch(err => toast.error(err?.message || "Something is wrong"));
     }
-    console.log(item)
     return (
         <div className="post-card">
             <div className="post-header">
                 <div className="post-author">
                     <div className="post-avatar">
-                        <img src={item.url || "https://i.pravatar.cc/100"} alt={item.name} />
+                        <img src={item?.userUrl || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775638071/zgvl1ydotjed2eamz7ig.png"} alt={item.name} />
                     </div>
                     <div>
                         <p className="post-author-name">{item.name}</p>
@@ -84,19 +82,22 @@ const PostCard = ({ item }) => {
                         </p>
                     </div>
                 </div>
-                <span className="post-badge" style={{ background: badge.bg, color: badge.color }}>
-                    {item.category}
-                </span>
-                {item.userId?.toString() === user.id?.toString() && (
-                    <button className="post-delete-btn" onClick={handleDeletePost}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6l-1 14H6L5 6" />
-                            <path d="M10 11v6M14 11v6" />
-                            <path d="M9 6V4h6v2" />
-                        </svg>
-                    </button>
-                )}
+                <div style={{ display: "flex" }}>
+
+                    <span className="post-badge" style={{ background: badge.bg, color: badge.color }}>
+                        {item.category}
+                    </span>
+                    {item.userId?.toString() === user.id?.toString() && (
+                        <button className="post-delete-btn" onClick={handleDeletePost}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path d="M19 6l-1 14H6L5 6" />
+                                <path d="M10 11v6M14 11v6" />
+                                <path d="M9 6V4h6v2" />
+                            </svg>
+                        </button>
+                    )}
+                </div>
             </div>
 
             <div className="post-body">
@@ -123,7 +124,7 @@ const PostCard = ({ item }) => {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                     </svg>
-                    {comments.length} comments
+                    {comments?.length} comments
                 </button>
             </div>
 
@@ -133,9 +134,7 @@ const PostCard = ({ item }) => {
                         <p className="no-comments">No comments yet — be the first!</p>
                     )}
                     {comments.map(c => (
-                        // console.log("c.userId:", c.userId),
-                        // console.log("user._id:", user.id),
-                        // console.log("match:", c.userId === user.id),
+
                         <div key={c._id} className="comment-item">
                             <div className="comment-avatar">
                                 <img src={c.url || "https://i.pravatar.cc/100"} alt={c.user} />
@@ -144,7 +143,7 @@ const PostCard = ({ item }) => {
                                 <p className="comment-user">{c.user}</p>
                                 <p className="comment-msg">{c.message}</p>
                             </div>
-                            {c.userId?.toString() === user.id?.toString() && (
+                            {c.userId?.toString() === user.id?.toString() && <div>
                                 <button className="comment-delete-btn" onClick={() => handleDeleteComment(c._id)}>
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                         <polyline points="3 6 5 6 21 6" />
@@ -153,7 +152,7 @@ const PostCard = ({ item }) => {
                                         <path d="M9 6V4h6v2" />
                                     </svg>
                                 </button>
-                            )}
+                            </div>}
                         </div>
                     ))}
                     <div className="comment-input-row">

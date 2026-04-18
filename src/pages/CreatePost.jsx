@@ -31,6 +31,7 @@ const CreatePost = () => {
     formData.append("description", description.current.value.trim());
     formData.append("category", category.trim())
     formData.append("name", user.name)
+    formData.append("userUrl", user.url)
     const file = imageRef.current.files[0];
     if (file) {
       const sizeInMB = file.size / (1024 * 1024);
