@@ -136,82 +136,82 @@ const CreateStudent = () => {
     }
     return (<>
 
-        {/* <div className="form-container" id='floting' > */}
-        {/* <button className="cut" id="cut" onClick={() => navigate(-1)}><RxCross2 /></button> */}
-        <h2>Create Student</h2>
-        <form onSubmit={handelSubmit}>
-            <label htmlFor="name">
-                Full Name:
-            </label>
-            <input type="text" id='name' ref={nameRef} placeholder='Harsh Vardhan Pal' required />
-            <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder='student12@gmail.com' ref={emailRef} required />
-            <button type='button' disabled={isOtp} onClick={handelOTP}>Send otp</button>
-            {isOtp && <><label htmlFor="otp">OTP</label>
-                <input type="text" inputMode="numeric" maxLength={6} ref={otpRef} placeholder='123456' required />
-                <label htmlFor="password">Password</label>
-                <div className="password-div">
-                    <input
-                        type={flag ? "text" : "password"}
-                        id="password"
-                        ref={passwordRef}
-                        className="passwordinput"
-                        placeholder="H@rash123"
-                    />
-                    <span id="toggle" onClick={() => setFlag(!flag)}>
-                        {flag ? (
-                            <GiEyeOfHorus className="close" />
-                        ) : (
-                            <GiEyelashes className="close" />
-                        )}
-                    </span>
-                </div>
-                <label htmlFor="dob">Date of Birth</label>
-                <input type="date" max={maxDate} ref={dobRef} />
-                <label htmlFor="roll">Roll Number</label>
-                <input type="text" inputMode="numeric" maxLength={2} name="roll" id="roll" placeholder='21' ref={rollRef} required />
-                <label htmlFor="father">Father's Name</label>
-                <input type="text" ref={fatherRef} placeholder='Father name' required />
-                <label htmlFor="mobile">Mobile</label>
-                <input
-                    type="tel"
-                    pattern="[6-9]{1}[0-9]{9}"
-                    maxLength="10"
-                    placeholder="Enter 10 digit mobile"
-                    id='mobile'
-                    ref={mobileRef}
-                    required
-                />
-                <p>Notify Method</p>
-                <div className="category-pill">
-                    <label htmlFor="sms">SMS
-                        <input type="radio" name="notify" id="sms" value="sms" style={{ display: "none" }} />
-                    </label>
-                    <label htmlFor="Memail">Email
-                        <input type="radio" name="notify" id="Memail" value="email" style={{ display: "none" }} />
-                    </label>
-                </div>
-                <p>Gender</p>
-                <div className="category-pill">
-                    <label htmlFor="male">male
-                        <input type="radio" name="gender" id="male" value="male" style={{ display: "none" }} />
-                    </label>
-
-                    <label htmlFor="female">female
-                        <input type="radio" name="gender" id="female" value="female" style={{ display: "none" }} />
-                    </label>
-                </div>
-                <label htmlFor="address">Address</label>
-                <input type="text" ref={addressRef} id='address' required />
-                <label htmlFor="image">
-                    <CiImageOn className="image-icon" /> Add image
-                    <input type="file" name="image" accept="image/*" id="image" ref={fileRef} style={{ display: "none" }} />
+        <div className="form-container" >
+            {/* <button className="cut" id="cut" onClick={() => navigate(-1)}><RxCross2 /></button> */}
+            <h2>Create Student</h2>
+            <form onSubmit={handelSubmit}>
+                <label htmlFor="name">
+                    Full Name:
                 </label>
-                <button type='submit'>Create</button>
+                <input type="text" id='name' ref={nameRef} placeholder='Harsh Vardhan Pal' required />
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder='student12@gmail.com' ref={emailRef} required />
+                <button type='button' disabled={isOtp} onClick={handelOTP}>Send otp</button>
+                {isOtp && <><label htmlFor="otp">OTP</label>
+                    <input type="text" inputMode="numeric" maxLength={6} ref={otpRef} placeholder='123456' required />
+                    <label htmlFor="password">Password</label>
+                    <div className="password-div">
+                        <input
+                            type={flag ? "text" : "password"}
+                            id="password"
+                            ref={passwordRef}
+                            className="passwordinput"
+                            placeholder="H@rash123"
+                        />
+                        <span id="toggle" onClick={() => setFlag(!flag)}>
+                            {flag ? (
+                                <GiEyeOfHorus className="close" />
+                            ) : (
+                                <GiEyelashes className="close" />
+                            )}
+                        </span>
+                    </div>
+                    <label htmlFor="dob">Date of Birth</label>
+                    <input type="date" max={maxDate} ref={dobRef} />
+                    <label htmlFor="roll">Roll Number</label>
+                    <input type="text" inputMode="numeric" maxLength={2} name="roll" id="roll" placeholder='21' ref={rollRef} required />
+                    <label htmlFor="father">Father's Name</label>
+                    <input type="text" ref={fatherRef} placeholder='Father name' required />
+                    <label htmlFor="mobile">Mobile</label>
+                    <input
+                        type="tel"
+                        pattern="[6-9]{1}[0-9]{9}"
+                        maxLength="10"
+                        placeholder="Enter 10 digit mobile"
+                        id='mobile'
+                        ref={mobileRef}
+                        required
+                    />
+                    <p>Notify Method</p>
+                    <div className="category-pill">
+                        <label htmlFor="sms">SMS
+                            <input type="radio" name="notify" id="sms" value="sms" style={{ display: "none" }} />
+                        </label>
+                        <label htmlFor="Memail">Email
+                            <input type="radio" name="notify" id="Memail" value="email" style={{ display: "none" }} />
+                        </label>
+                    </div>
+                    <p>Gender</p>
+                    <div className="category-pill">
+                        <label htmlFor="male">male
+                            <input type="radio" name="gender" id="male" value="male" style={{ display: "none" }} />
+                        </label>
 
-            </>}
-        </form>
-        {/* </div> */}
+                        <label htmlFor="female">female
+                            <input type="radio" name="gender" id="female" value="female" style={{ display: "none" }} />
+                        </label>
+                    </div>
+                    <label htmlFor="address">Address</label>
+                    <input type="text" ref={addressRef} id='address' required />
+                    <label htmlFor="image">
+                        <CiImageOn className="image-icon" /> Add image
+                        <input type="file" name="image" accept="image/*" id="image" ref={fileRef} style={{ display: "none" }} />
+                    </label>
+                    <button type='submit'>Create</button>
+
+                </>}
+            </form>
+        </div>
 
 
     </>)

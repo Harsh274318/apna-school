@@ -3,11 +3,12 @@ import { GiEyelashes, GiEyeOfHorus } from "react-icons/gi";
 import api from "../../api";
 import { toast } from "react-toastify";
 import Context from "../context/Context.jsx";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import { RxCross2 } from "react-icons/rx";
 
 const LoginForm = () => {
+    const location = useLocation();
     const obj = useContext(Context)
     const emailRef = useRef();
     const passwordRef = useRef();
@@ -38,6 +39,7 @@ const LoginForm = () => {
                 if (role === "Principal") navigate("/principal");
                 else if (role === "Teacher") navigate("/teacher");
                 else if (role === "Student") navigate("/student");
+                else { navigate("/") }
                 toast.success(res.data.data.message || "login Successfully");
 
                 console.log(res.data.data);
@@ -57,7 +59,8 @@ const LoginForm = () => {
         {obj.apiData.loading ? <Loading /> : <div className="tForm-image" id="floting">
             <div className="login-outter">
                 <div className="form-container" >
-                    <button type="button" id="cross" onClick={() => navigate(-1)}> <RxCross2 /> </button>
+                    <button type="button" id="cross" onClick={() => navigate("/")
+                    }> <RxCross2 /> </button>
                     <form onSubmit={handleLogin}>
                         <h2>Login Here </h2>
                         <label htmlFor="email">Enter your registered EMAIL</label>
@@ -75,7 +78,7 @@ const LoginForm = () => {
                     </form>
                 </div>
             </div>
-        </div>}
+        </div >}
     </>)
 }
 export default LoginForm
