@@ -12,6 +12,10 @@ const StudentDashboard = () => {
     return (
         <>
             <div className="desboards">
+                <img
+                    src={localData?.url || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
+                    alt={localData.public_id}
+                />
                 <h1>Welcome Back, {localData?.name || "Loading..."}</h1>
                 <p>Role: {localData?.role || "Loading..."}</p>
                 <div className="top-bar">
