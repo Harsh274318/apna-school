@@ -16,14 +16,16 @@ const VeiwHomework = () => {
     const dateRef = useRef();
     function handelHomework(e) {
         e.preventDefault()
-        const useClass = classRef.current.value.trim();
+        let useClass = null;
         const date = dateRef.current.value.trim();
         if (!date) return toast.warning("Select date")
         if (user.role == "Principal" || user.role == "Teacher") {
+            useClass = classRef.current.value.trim()
             if (!useClass) return toast.warning("Select a class");
             if (isNaN(Number(useClass))) return toast.warning("class must be number");
             if (useClass > 13 || useClass < 1) return toast.warning("select between 1 to 12");
         }
+
         setApiData(prev => ({
             ...prev, loading: true
         }))
