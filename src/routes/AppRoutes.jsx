@@ -91,8 +91,8 @@ const AppRoutes = () => {
                 }>
                     <Route index element={<Attendance />} />
                     <Route path="homework" element={<VeiwHomework />} />
-                    <Route path="post" element={<PostCard />} />
-                    <Route path="Create-post" element={<CreatePost />} />
+                    <Route path="social" element={<SocialPage />} />
+                    
                     <Route path="update-password" element={<UpdatePassword />} />
                 </Route>
                 <Route path="*" element={<PageNotFound />} />
