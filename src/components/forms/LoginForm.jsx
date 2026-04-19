@@ -41,7 +41,8 @@ const LoginForm = () => {
                 else if (role === "Student") navigate("/student");
                 else { navigate("/") }
                 toast.success(res.data.data.message || "login Successfully");
-
+                emailRef.current.value = ""
+                passwordRef.current.value = ""
                 console.log(res.data.data);
             })
             .catch((err) => {
