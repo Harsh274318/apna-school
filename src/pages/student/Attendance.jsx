@@ -20,9 +20,16 @@ const Attendance = () => {
                 toast.error("Attendance not found");
             })
     }, [])
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    const markedAttendance = attendance?.filter(i => {
+        const status = i.records?.[0]?.status;
+        return status && status.trim() !== "";
+    }) || [];
 
-    const presentCount = attendance?.filter(i => i.records?.[0]?.status === "present").length || 0;
-    const absentCount  = attendance?.filter(i => i.records?.[0]?.status === "absent").length  || 0;
+    const presentCount = markedAttendance.filter(i => i.records?.[0]?.status === "present").length;
+    const absentCount = markedAttendance.filter(i => i.records?.[0]?.status === "absent").length;
 
     return (
         <div className='attendanceDiv'>
@@ -33,20 +40,20 @@ const Attendance = () => {
             {!apiData.loading && attendance && (
                 <>
                     <div className='attendance-table'>
-                        
+
                         <div className='attendance-row header'>
                             <span>Date</span>
                             <span>Status</span>
                         </div>
 
-                        {attendance.map((item, index) => {
+                        {markedAttendance.map((item, index) => {
                             const status = item.records?.[0]?.status;
                             const isPresent = status === "present";
                             return (
                                 <div key={index} className='attendance-row'>
                                     <span>{item.date.split("-").reverse().join("-")}</span>
                                     <span className={isPresent ? 'status-present' : 'status-absent'}>
-                                        {status}
+                                        {capitalize(status)}
                                     </span>
                                 </div>
                             )
@@ -54,7 +61,7 @@ const Attendance = () => {
                     </div>
 
                     <p className='attendance-summary'>
-                        Total: {attendance.length} &nbsp;|&nbsp;
+                        Total: {markedAttendance.length} &nbsp;|&nbsp;
                         Present: {presentCount} &nbsp;|&nbsp;
                         Absent: {absentCount}
                     </p>
