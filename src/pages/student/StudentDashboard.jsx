@@ -24,7 +24,7 @@ const StudentDashboard = () => {
             </div>
 
             <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
-                <button onClick={() => { navigate("student"); setOpen(!open) }}>Attendance</button>
+                <button onClick={() => { navigate("/student"); setOpen(!open) }}>Attendance</button>
                 <button onClick={() => { navigate("homework"); setOpen(!open) }}>View Homework</button>
                 <button onClick={() => { navigate("social"); setOpen(!open) }}>posts</button>
 
