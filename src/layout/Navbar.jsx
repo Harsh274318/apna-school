@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
     const [role, setRole] = useState("")
     const token = localStorage.getItem("token")
-    
+
     function handalNavigate(e) {
         e.preventDefault()
         const localData = JSON.parse(localStorage.getItem("user"))
@@ -34,7 +34,7 @@ const Navbar = () => {
             </div>
 
             <div className="loginSignup">
-                {token && role ? <button className="button"
+                {token ? <button className="button"
                     onClick={() => { handalNavigate }}
                 >Dashboard</button> : <button className="button"
                     onClick={() => navigate("/login")}
