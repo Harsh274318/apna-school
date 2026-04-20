@@ -59,6 +59,7 @@ const AppRoutes = () => {
 
 
                     <Route index element={<StudentForm />} />
+                    <Route path="student-query" element={<StudentForm />} />
                     <Route path="teacher-query" element={<TeacherForm />} />
                     <Route path="login" element={<LoginForm />} />
 
@@ -92,7 +93,7 @@ const AppRoutes = () => {
                     <Route index element={<Attendance />} />
                     <Route path="homework" element={<VeiwHomework />} />
                     <Route path="social" element={<SocialPage />} />
-                    
+
                     <Route path="update-password" element={<UpdatePassword />} />
                 </Route>
                 <Route path="*" element={<PageNotFound />} />
