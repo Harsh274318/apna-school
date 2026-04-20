@@ -10,8 +10,8 @@ const Navbar = () => {
     function handalNavigate(e) {
         e.preventDefault()
         const localData = JSON.parse(localStorage.getItem("user"))
-        setRole(localData?.role.toLowerCase())
-        navigate(`/${role}`)
+        const navi = localData?.role.toLowerCase()
+        navigate(`/${navi}`)
         console.log("clicked")
     }
 
