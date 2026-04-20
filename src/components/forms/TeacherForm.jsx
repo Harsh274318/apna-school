@@ -65,12 +65,6 @@ const TeacherForm = () => {
         setApiData(prev => ({ ...prev, loading: true }))
         api.post("/teacher-query", data)
             .then(() => {
-                nameRef.current.value = ""
-                emailRef.current.value = ""
-                phoneRef.current.value = ""
-                subjectRef.current.value = ""
-                experienceRef.current.value = ""
-                messageRef.current.value = ""
                 setApiData(prev => ({ ...prev, loading: false }))
                 toast.success("Query sent successfully")
             })

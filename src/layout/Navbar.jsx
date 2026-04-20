@@ -1,17 +1,18 @@
-import react, { useEffect, useState } from "react";
+import react, { useState } from "react";
 import "./nav.css"
 import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
-    const [flag, setFlag] = useState(false)
+    const [role, setRole] = useState("")
     const token = localStorage.getItem("token")
-    let role = ""
-    useEffect(() => {
+    
+    function handalNavigate(e) {
+        e.preventDefault()
         const localData = JSON.parse(localStorage.getItem("user"))
-        role = localData?.role.toLowerCase()
-
-    }, [flag])
+        setRole(localData?.role.toLowerCase())
+        navigate(`/${role}`)
+    }
 
     const navigate = useNavigate()
     return (<>
@@ -33,9 +34,9 @@ const Navbar = () => {
             </div>
 
             <div className="loginSignup">
-                {token ? <button className="button"
-                    onClick={() => { navigate(`/${role}`), setFlag(!flag) }}
-                >Desboard</button> : <button className="button"
+                {token && role ? <button className="button"
+                    onClick={() => { handalNavigate }}
+                >Dashboard</button> : <button className="button"
                     onClick={() => navigate("/login")}
                 >Login</button>}
             </div>

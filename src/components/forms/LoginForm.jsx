@@ -34,14 +34,13 @@ const LoginForm = () => {
                 const payload = { email: res.data.data.email, name: res.data.data.name, role: res.data.data.role, url: res.data.data.url, public_id: res.data.data.public_id, id: res.data.data.id }
                 localStorage.setItem("user", JSON.stringify(payload))
                 obj.setApiData(prev => ({ ...prev, data: res.data.data }))
-                // res.data.data
-                toast.success(res.data.data.message || "login Successfully");
+                toast.success(res.data.message || "login Successfully");
                 const role = res.data.data.role;
                 if (role === "Principal") navigate("/principal");
                 else if (role === "Teacher") navigate("/teacher");
                 else if (role === "Student") navigate("/student");
                 else { navigate("/") }
-                // console.log(res.data.data);
+
             })
             .catch((err) => {
                 console.log(err.message);

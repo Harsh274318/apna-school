@@ -27,6 +27,7 @@ const TeacherDashboard = () => {
             </div>
 
             <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
+                <button onClick={() => { navigate("/"); setOpen(!open) }}>Home</button>
                 <button onClick={() => { navigate("/teacher"); setOpen(!open) }}>My Students</button>
                 <button onClick={() => { navigate("create-student"); setOpen(!open) }}>Create Student</button>
                 <button onClick={() => { navigate("mark-attendance"); setOpen(!open) }}>Mark Attendance</button>

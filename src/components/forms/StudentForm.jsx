@@ -15,7 +15,7 @@ const StudentForm = () => {
     const [state, setState] = useState({ message: "", err: "", loading: false })
 
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
         const name = nameRef.current?.value?.trim();
         const number = numberRef.current?.value?.trim();
@@ -55,14 +55,10 @@ const StudentForm = () => {
             class: classRef.current.value,
         }
 
-        const res = await api.post('/student-query', payload)
+        api.post('/student-query', payload)
             .then(() => {
                 toast.success("Student registered successfully!");
                 setState(prev => ({ ...prev, loading: false }));
-                nameRef.current.value = "";
-                numberRef.current.value = "";
-                dobRef.current.value = "";
-                classRef.current.value = "";
             })
             .catch(() => {
                 toast.error("Somthing is wrong!");

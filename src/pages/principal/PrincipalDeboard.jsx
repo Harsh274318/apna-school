@@ -31,9 +31,10 @@ const PrincipalDesboard = () => {
 
             {/* ── Navigation Buttons ── */}
             <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
+                <button onClick={() => { navigate("/"); setOpen(!open) }}>Home</button>
                 <button onClick={() => { navigate("/principal"); setOpen(!open) }}>My Teacher</button>
                 <button onClick={() => { navigate("/principal/create-teacher"); setOpen(!open) }}>
-                    Teacher <FaPlus />
+                    Add Teacher
                 </button>
                 <button onClick={() => { navigate("/principal/view-student"); setOpen(!open) }}>
                     View Students
