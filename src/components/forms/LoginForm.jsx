@@ -35,15 +35,13 @@ const LoginForm = () => {
                 localStorage.setItem("user", JSON.stringify(payload))
                 obj.setApiData(prev => ({ ...prev, data: res.data.data }))
                 // res.data.data
+                toast.success(res.data.data.message || "login Successfully");
                 const role = res.data.data.role;
                 if (role === "Principal") navigate("/principal");
                 else if (role === "Teacher") navigate("/teacher");
                 else if (role === "Student") navigate("/student");
                 else { navigate("/") }
-                toast.success(res.data.data.message || "login Successfully");
-                emailRef.current.value = ""
-                passwordRef.current.value = ""
-                console.log(res.data.data);
+                // console.log(res.data.data);
             })
             .catch((err) => {
                 console.log(err.message);
