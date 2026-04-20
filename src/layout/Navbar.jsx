@@ -12,6 +12,7 @@ const Navbar = () => {
         const localData = JSON.parse(localStorage.getItem("user"))
         setRole(localData?.role.toLowerCase())
         navigate(`/${role}`)
+        console.log("clicked")
     }
 
     const navigate = useNavigate()
@@ -35,7 +36,7 @@ const Navbar = () => {
 
             <div className="loginSignup">
                 {token ? <button className="button"
-                    onClick={() => { handalNavigate }}
+                    onClick={handalNavigate}
                 >Dashboard</button> : <button className="button"
                     onClick={() => navigate("/login")}
                 >Login</button>}
