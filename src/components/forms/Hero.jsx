@@ -13,7 +13,7 @@ const Hero = () => {
 
         if (["/teacher-query", "/student-query", "login"].includes(path)) {
             window.scrollTo({
-                top: document.documentElement.scrollHeight,
+                top: document.documentElement.scrollHeight - window.innerHeight - 200,
                 behavior: "smooth",
             });
         } else if (path === "/") {

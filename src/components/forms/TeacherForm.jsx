@@ -131,7 +131,7 @@ const TeacherForm = () => {
                         />
 
                         <button type="submit">Apply Now</button>
-                        <span style={{ fontSize: "2px" }} className="RouteStude" onClick={() => navigate("student-query")}> <h2> I am a student !</h2></span>
+                        <span style={{ fontSize: "2px" }} className="RouteStude" onClick={() => navigate("/student-query")}> <h2> I am a student !</h2></span>
                     </form>
                 </div>
 
