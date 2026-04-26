@@ -26,9 +26,9 @@ const AddSessions = () => {
                 toast.error("Somthing is wrong")
             })
     }
-    return (<>
+    return (<div>
 
-        <select name='session' ref={sessionRef} style={selectStyle}>
+        <select name='session' ref={sessionRef} className="selectStyle">
             <option value="" defaultValue> -- add session --</option>
             <option value="2026-27">2026-27</option>
             <option value="2027-28">2027-28</option>
@@ -43,7 +43,7 @@ const AddSessions = () => {
         </select>
         <button type="button" style={btnStyle} onClick={addSession}>Add session</button>
 
-    </>)
+    </div>)
 }
 export default AddSessions
 

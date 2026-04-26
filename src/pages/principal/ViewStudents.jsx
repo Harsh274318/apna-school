@@ -38,10 +38,10 @@ const ViewStudents = () => {
 
         <div className="search-container">
             <label htmlFor="student">Roll</label>
-            <input type="number" min={100} id="student" className='Hclass' ref={rollNumberRef} />
+            <input type="number" min={100} id="student" className='Hclass' ref={rollNumberRef} placeholder='Ex: 121'/>
             <label htmlFor="class">class</label>
-            <input type="text" id='class' className='Hclass' ref={classRef} inputMode="numeric" min={1} max={12} />
-            <select name="session" id="session" ref={sessionRef}>
+            <input type="text" id='class' className='Hclass' ref={classRef} inputMode="numeric" min={1} max={12} placeholder='Ex: 1'/>
+            <select name="session" id="session" ref={sessionRef} className='selectStyle'>
                 <option value="">--session--</option>
                 <option value="2026-27">2026-27</option>
                 <option value="2027-28">2027-28</option>

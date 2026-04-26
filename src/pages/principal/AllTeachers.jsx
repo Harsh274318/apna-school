@@ -59,7 +59,7 @@ const AllTeachers = () => {
     {!apiData.loading && teacher && teacher.map(item => (
 
       <div key={item._id} style={{
-        background: "var(--color-background-primary)",
+        background: item.gender === "Female" ? "#FCE4EC" : "#E3F2FD",
         borderRadius: "12px",
         border: "0.5px solid var(--color-border-tertiary)",
         padding: "14px 16px",
@@ -78,10 +78,10 @@ const AllTeachers = () => {
           </div>
         </div>
         <div style={{ display: "flex", gap: 8 }}>
-          <span style={{ background: "#E6F1FB", color: "#0C447C", fontSize: 12, padding: "4px 10px", borderRadius: 999 }}>
+          <span style={{ background: "#add6ff", color: "#0C447C", fontSize: 12, padding: "10px", borderRadius: "21px" }}>
             Class {item.classAssigned}
           </span>
-          <span style={{ background: item.gender === "Female" ? "#FBEAF0" : "#E1F5EE", color: item.gender === "Female" ? "#72243E" : "#085041", fontSize: 12, padding: "4px 10px", borderRadius: 999 }}>
+          <span style={{ background: item.gender === "Female" ? "#FBEAF0" : "#E1F5EE", color: item.gender === "Female" ? "#72243E" : "#085041", fontSize: 12, padding: "10px", borderRadius: "14px" }}>
             {item.gender}
           </span>
           <button type='button' className="delete-btn" onClick={(e) => handelDeleteTeacher(e, item.userId.email)}><AiOutlineDelete /></button>

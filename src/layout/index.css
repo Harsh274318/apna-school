@@ -60,7 +60,16 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
-
+.main_layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1777229205/background_mnp9wn.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: auto;
+}
 /* ============================================================ */
 /* NAVBAR                                                        */
 /* ============================================================ */
@@ -500,10 +509,11 @@ body {
 /* ============================================================ */
 .form-container {
   position: relative;
-  /* width: 100%; */
+  width: 100%;
   max-width: 500px;
-  margin: 48px auto;
-  padding: 40px 36px;
+  margin: 5px auto;
+  padding: 15px 36px;
+  height: auto;
   border-radius: var(--radius-xl);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -519,7 +529,6 @@ body {
 } */
 .form-container h2 {
   text-align: center;
-  margin-bottom: 28px;
   font-family: var(--font-display);
   font-size: 26px;
   font-weight: 700;
@@ -528,7 +537,7 @@ body {
 .form-container form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 5px;
 }
 .form-container label {
   display: block;
@@ -678,8 +687,9 @@ body {
   max-width: 700px;
   padding: 32px;
   border-radius: var(--radius-xl);
-  background: var(--surface);
+  background: #ffffff1f;
   border: 1px solid var(--border);
+  backdrop-filter: blur(2px);
   box-shadow: var(--shadow-lg);
   position: relative;
   overflow: hidden;
@@ -714,8 +724,9 @@ body {
   flex-wrap: wrap;
 }
 .class {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 10px;
   color: var(--text-secondary);
 }
 .Hclass {
@@ -780,28 +791,175 @@ input[type="number"]::-webkit-inner-spin-button {
   gap: 6px;
   padding: 16px 18px;
   border-radius: var(--radius-md);
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
-    rgba(79, 70, 229, 0.05),
-    rgba(99, 102, 241, 0.03)
-  );
+    #0a2463,
+    #1b3a6d
+  ); */
   border: 1px solid rgba(79, 70, 229, 0.1);
   transition: all 0.2s var(--ease);
+  cursor: pointer;
 }
 .listItem:hover {
-  transform: translateY(-2px);
+  transform: translateY(-10px);
+  transform: translateX(10px);
+  scale: 1.03;
   border-color: rgba(79, 70, 229, 0.2);
   box-shadow: var(--shadow-sm);
 }
 .title {
   font-size: 15px;
   font-weight: 700;
-  color: var(--text-primary);
+  /* color: #00d4ff; */
 }
 .description {
   font-size: 14px;
-  color: var(--text-secondary);
+  /* color: #7db3d9; */
   line-height: 1.6;
+}
+.listItem:nth-child(1) {
+  background: linear-gradient(135deg, #1a1247 0%, #2d1b3d 100%);
+  border-color: rgba(255, 215, 0, 0.15);
+}
+
+.listItem:nth-child(1) .title {
+  color: #ffd700;
+}
+
+.listItem:nth-child(1) .description {
+  color: #d4c5e8;
+}
+
+.listItem:nth-child(1):hover {
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.12);
+}
+
+/* ========================================
+   COMBO 2: Ocean Blue + Cyan
+   ======================================== */
+.listItem:nth-child(2) {
+  background: linear-gradient(135deg, #0a2463 0%, #1b3a6d 100%);
+  border-color: rgba(0, 212, 255, 0.15);
+}
+
+.listItem:nth-child(2) .title {
+  color: #00d4ff;
+}
+
+.listItem:nth-child(2) .description {
+  color: #7db3d9;
+}
+
+.listItem:nth-child(2):hover {
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.12);
+}
+
+/* ========================================
+   COMBO 3: Emerald Green + Lime
+   ======================================== */
+.listItem:nth-child(3) {
+  background: linear-gradient(135deg, #0d3b2d 0%, #1a5c48 100%);
+  border-color: rgba(0, 255, 136, 0.15);
+}
+
+.listItem:nth-child(3) .title {
+  color: #00ff88;
+}
+
+.listItem:nth-child(3) .description {
+  color: #5dd9b3;
+}
+
+.listItem:nth-child(3):hover {
+  border-color: rgba(0, 255, 136, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 255, 136, 0.12);
+}
+
+/* ========================================
+   COMBO 4: Sunset Orange + Pink
+   ======================================== */
+.listItem:nth-child(4) {
+  background: linear-gradient(135deg, #3d1f1f 0%, #5c2d2d 100%);
+  border-color: rgba(255, 107, 157, 0.15);
+}
+
+.listItem:nth-child(4) .title {
+  color: #ff6b9d;
+}
+
+.listItem:nth-child(4) .description {
+  color: #e8a3c4;
+}
+
+.listItem:nth-child(4):hover {
+  border-color: rgba(255, 107, 157, 0.3);
+  box-shadow: 0 8px 24px rgba(255, 107, 157, 0.12);
+}
+
+/* ========================================
+   COMBO 5: Indigo + Light Purple
+   ======================================== */
+.listItem:nth-child(5) {
+  background: linear-gradient(135deg, #2a1a4f 0%, #3d2c66 100%);
+  border-color: rgba(192, 132, 252, 0.15);
+}
+
+.listItem:nth-child(5) .title {
+  color: #c084fc;
+}
+
+.listItem:nth-child(5) .description {
+  color: #b89ee0;
+}
+
+.listItem:nth-child(5):hover {
+  border-color: rgba(192, 132, 252, 0.3);
+  box-shadow: 0 8px 24px rgba(192, 132, 252, 0.12);
+}
+
+/* ========================================
+   CYCLING: For more than 5 items
+   ======================================== */
+.listItem:nth-child(5n + 6) {
+  background: linear-gradient(135deg, #1a1247 0%, #2d1b3d 100%);
+  border-color: rgba(255, 215, 0, 0.15);
+}
+
+.listItem:nth-child(5n + 6) .title {
+  color: #ffd700;
+}
+
+.listItem:nth-child(5n + 6) .description {
+  color: #d4c5e8;
+}
+
+.listItem:nth-child(5n + 6):hover {
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.12);
+}
+
+/* ========================================
+   ALTERNATIVE: Rotate through combos
+   ======================================== */
+/* 
+   Agar har item ko ek aise hi color chahiye, 
+   to sirf .listItem:nth-child(5n + 6) rule hatao
+   aur neeche ke se use karo:
+*/
+
+/* Option 1: Every 5 items ko repeat karo */
+.listItem:nth-child(5n + 6):nth-child(-n + 10) {
+  /* Combo 2 */
+}
+
+/* Option 2: Pattern repeat - ABCDEABCDE... */
+.listItem:nth-child(10n + 6) {
+  /* Combo 1 - positions 6, 16, 26... */
+}
+.listItem:nth-child(10n + 7) {
+  /* Combo 2 - positions 7, 17, 27... */
 }
 
 /* ============================================================ */
@@ -919,15 +1077,16 @@ input[type="number"]::-webkit-inner-spin-button {
   gap: 10px;
   padding: 14px 18px;
   flex-wrap: wrap;
-  background: var(--surface);
+  background: #ffffff1f;
+  backdrop-filter: blur(3px);
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
   margin-bottom: 16px;
 }
 .search-container label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-secondary);
+  font-size: 18px;
+  font-weight: 700;
+  color: #700202;
   white-space: nowrap;
 }
 .search-container input[type="number"] {
@@ -958,7 +1117,16 @@ input[type="number"]::-webkit-inner-spin-button {
 .search-container button:hover {
   background: var(--brand-hover);
 }
-
+.selectStyle {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 100px;
+  margin-right: 10px;
+}
 /* ============================================================ */
 /* ATTENDANCE                                                   */
 /* ============================================================ */

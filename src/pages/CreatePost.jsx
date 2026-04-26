@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import api from "../api.js";
 import Context from "../components/context/Context.jsx";
 import "./posts.css"
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 
 
@@ -14,6 +15,7 @@ const CreatePost = () => {
   const description = useRef();
   const imageRef = useRef();
   const { apiData, setApiData } = useContext(Context)
+  const [imageSelected, setImageSelected] = useState(false);
   function handelCancel(e) {
     e.preventDefault()
     titleRef.current.value = ""
@@ -32,6 +34,7 @@ const CreatePost = () => {
     formData.append("category", category.trim())
     formData.append("name", user.name)
     formData.append("userUrl", user.url)
+    formData.append("email", user.email)
     const file = imageRef.current.files[0];
     if (file) {
       const sizeInMB = file.size / (1024 * 1024);
@@ -44,7 +47,7 @@ const CreatePost = () => {
     api.post("/social/school-post", formData)
       .then(res => {
         setApiData(prev => ({
-          ...prev, loading: false, data: res.data.data
+          ...prev, loading: false, posts: res.data.data.reverse()
         }))
 
         titleRef.current.value = ""
@@ -57,6 +60,9 @@ const CreatePost = () => {
       })
       .catch(err => {
         console.log(err.message);
+        setApiData(prev => ({
+          ...prev, loading: false
+        }))
         toast.error("Something is wrong")
       })
 
@@ -86,8 +92,14 @@ const CreatePost = () => {
           ref={description}
           id="" />
         <label htmlFor="image">
-          <CiImageOn className="image-icon" /> Add image
-          <input type="file" name="image" accept="image/*" id="image" ref={imageRef} style={{ display: "none" }} />
+          {imageSelected
+            ? <><AiOutlineCheckCircle style={{ color: "green", fontSize: "20px", marginRight: "2px" }} /> Selected</>
+            : <><CiImageOn style={{ color: "red", fontSize: "20px", marginRight: "2px" }} /> Add image</>}
+          <input type="file" name="image" accept="image/*" id="image" ref={imageRef} style={{ display: "none" }} onChange={(e) => {
+            if (e.target.files.length > 0) {
+              setImageSelected(true);
+            }
+          }} />
         </label>
         <div className="category-pill">
           <label htmlFor="study">Study

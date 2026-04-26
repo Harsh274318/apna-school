@@ -13,10 +13,10 @@ const PrincipalDesboard = () => {
     const [localData] = useState(() => JSON.parse(localStorage.getItem("user")));
 
     return (
-        <>
+        <div className="main_layout">
             <div className="desboards">
                 <img
-                    src={"https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
+                    src={localData?.url}
                     alt={localData.public_id}
                 />
                 <h1>Welcome Back, {localData?.name || "Loading..."}</h1>
@@ -51,7 +51,7 @@ const PrincipalDesboard = () => {
             </div>
 
             <Outlet />
-        </>
+        </div>
     );
 };
 

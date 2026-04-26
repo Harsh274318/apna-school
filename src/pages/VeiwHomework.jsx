@@ -63,13 +63,14 @@ const VeiwHomework = () => {
 
                 <div className="card">
                     <div className="cardHeader">
+                            {(user.role == "Principal") && <><h2>Add new session</h2><AddSessions /></>}
                         <div className="headingDiv">
                             <h2 className="heading">Homework List</h2>
                         </div>
                         <div className="searchDiv">
                             {(user.role == "Principal" || user.role == "Teacher") &&
                                 <span><label htmlFor="class" className="class">Class</label>
-                                    <input type="number" className="Hclass" id="class" ref={classRef} inputMode="numeric" min={1} max={12} placeholder="2" />
+                                    <input type="number" className="Hclass" id="class" ref={classRef} inputMode="numeric" min={1} max={12} placeholder="Ex: 2" />
                                 </span>
                             }
                             <span>
@@ -79,7 +80,6 @@ const VeiwHomework = () => {
                         </div>
 
                     </div>
-                    {(user.role == "Principal") && <AddSessions />}
 
                     {!apiData.loading && homework && <div className="list">
                         {homework.map((item, index) => (

@@ -10,7 +10,7 @@ const StudentDashboard = () => {
     const [localData] = useState(() => JSON.parse(localStorage.getItem("user")));
     const [open, setOpen] = useState(false);
     return (
-        <>
+        <div className="main_layout">
             <div className="desboards">
                 <img
                     src={localData?.url || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
@@ -36,7 +36,7 @@ const StudentDashboard = () => {
                 <button onClick={() => { navigate("update-password"); setOpen(!open) }}>Update Password</button>
             </div>
             <Outlet />
-        </>
+        </div>
     );
 };
 

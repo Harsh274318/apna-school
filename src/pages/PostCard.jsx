@@ -21,6 +21,13 @@ const PostCard = ({ item }) => {
     const badge = categoryColors[item.category] || categoryColors.general;
     const { apiData, setApiData } = useContext(Context)
 
+
+    const formatText = (text) => {
+        return text.replace(
+            /(https?:\/\/[^\s]+)/g,
+            '<a class="ancer" href="$1" target="_blank">$1</a>'
+        );
+    };
     function handleLike() {
         api.patch(`/social/post/${item._id}/like`)
             .then(() => {
@@ -87,7 +94,7 @@ const PostCard = ({ item }) => {
                     <span className="post-badge" style={{ background: badge.bg, color: badge.color }}>
                         {item.category}
                     </span>
-                    {item.userId?.toString() === user.id?.toString() && (
+                    {(item.userId?.toString() === user.id?.toString() || user.role === "Principal") && (
                         <button className="post-delete-btn" onClick={handleDeletePost}>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <polyline points="3 6 5 6 21 6" />
@@ -102,10 +109,10 @@ const PostCard = ({ item }) => {
 
             <div className="post-body">
                 <p className="post-title">{item.title}</p>
-                <p className="post-desc">{item.description}</p>
-                {item.url && (
+                <p dangerouslySetInnerHTML={{ __html: formatText(item.description) }} />
+                {item.imageurl && (
                     <div className="post-image">
-                        <img src={item.url} alt="post" />
+                        <img src={item.imageurl} alt="post" />
                     </div>
                 )}
             </div>

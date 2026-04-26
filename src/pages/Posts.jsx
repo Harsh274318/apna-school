@@ -18,7 +18,7 @@ const Posts = () => {
                 setApiData(prev => ({
                     ...prev,
                     loading: false,
-                    data: res.data.data.reverse()
+                    posts: res.data.data.reverse()
                 }));
             })
             .catch(err => {
@@ -28,8 +28,8 @@ const Posts = () => {
     }, []);
 
     const filtered = active === "all"
-        ? apiData.data
-        : apiData.data?.filter(p => p.category === active);
+        ? apiData.posts
+        : apiData.posts?.filter(p => p.category === active);
 
     return (
         <>

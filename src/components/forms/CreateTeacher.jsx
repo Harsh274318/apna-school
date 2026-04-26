@@ -7,6 +7,8 @@ import Loading from "./Loading";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
+import { CiImageOn } from "react-icons/ci";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 const CreateTeacher = () => {
     const { apiData, setApiData } = useContext(Context);
@@ -18,6 +20,7 @@ const CreateTeacher = () => {
     const classRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate()
+    const [imageSelected, setImageSelected] = useState(false);
     function handelOTP(e) {
         e.preventDefault();
         if (!nameRef.current.value.trim() || !emailRef.current.value.trim())
@@ -109,36 +112,35 @@ const CreateTeacher = () => {
     }
     return (
         <>{apiData.loading && <Loading />}
-            <div style={styles.container} >
+            <div className="form-container" >
                 {/* <div className="form-container" > */}
                 {/* <button type="button" className="cut" id="cut" onClick={() => navigate(-1)}><RxCross2 /></button> */}
-                <form onSubmit={handelSubmit} style={styles.form}>
+                <form onSubmit={handelSubmit} >
 
-                    <h2 style={styles.heading}>Teacher's Form</h2>
-                    <label htmlFor="name" style={styles.label}>
+                    <h2>Teacher's Form</h2>
+                    <label htmlFor="name" >
                         Full Name
                     </label>
                     <input
                         type="text"
-                        style={styles.input}
                         ref={nameRef}
                         placeholder="Harsh Vardhan Pal"
                     />
-                    <label htmlFor="email" style={styles.label}>
+                    <label htmlFor="email" >
                         Valid Email
                     </label>
                     <input
                         type="email"
                         name="email"
                         id=""
-                        style={styles.input}
+
                         placeholder="validemail@gmail.com"
                         ref={emailRef}
                     />
-                    <button type="button" onClick={handelOTP} style={styles.button}>
+                    <button type="button" onClick={handelOTP} >
                         Send OTP
                     </button>
-                    <label htmlFor="otp" style={styles.label}>
+                    <label htmlFor="otp" >
                         Enter OTP
                     </label>
                     <input
@@ -147,10 +149,10 @@ const CreateTeacher = () => {
                         name="otp"
                         id="otp"
                         ref={otpRef}
-                        style={styles.input}
+
                         placeholder="123456"
                     />
-                    <label htmlFor="password" style={styles.label}>
+                    <label htmlFor="password" >
                         Create a strong Password
                     </label>
                     <div className="password-div">
@@ -169,17 +171,29 @@ const CreateTeacher = () => {
                             )}
                         </span>
                     </div>
-                    <label htmlFor="file" style={styles.label}></label>
-                    <input
-                        type="file"
-                        name="image"
-                        id=""
-                        accept="image/*"
-                        ref={imageRef}
-                        style={styles.input}
-                    />
-                    <p style={styles.smallText}>Image must be lessthen 3 Mb</p>
-                    <label htmlFor="class" style={styles.label}>
+
+
+                    <label htmlFor="file" className="imageLabel">
+                        {imageSelected
+                            ? <><AiOutlineCheckCircle style={{ color: "green", fontSize: "20px", marginRight: "2px" }} /> Selected</>
+                            : <><CiImageOn style={{ color: "red", fontSize: "20px", marginRight: "2px" }}/> Add image</>}
+                        <input
+                            type="file"
+                            name="image"
+                            id="file"
+                            accept="image/*"
+                            ref={imageRef}
+                            style={{ display: "none" }}
+                            onChange={(e) => {
+                                if (e.target.files.length > 0) {
+                                    setImageSelected(true);
+                                }
+                            }}
+                        />
+                    </label>
+
+                    <p style={{ fontSize: "12px", color: "tomato" }}>Image must be lessthen 3 Mb</p>
+                    <label htmlFor="class" >
                         Class
                     </label>
                     <input
@@ -189,32 +203,32 @@ const CreateTeacher = () => {
                         max={12}
                         id="class"
                         ref={classRef}
-                        style={styles.input}
+
                         placeholder="1-12"
                     />
-                    <div style={styles.radioGroup}>
-                        <label htmlFor="male" style={styles.label}>
+                    <div className="category-pill">
+                        <label htmlFor="male" >
                             Male
+                            <input
+                                type="radio"
+                                name="gender"
+                                id="male"
+                                value="male"
+                                style={{ display: "none" }}
+                            />
                         </label>
-                        <input
-                            type="radio"
-                            name="gender"
-                            id="male"
-                            value="male"
-                            style={styles.input}
-                        />
-                        <label htmlFor="female" style={styles.label}>
+                        <label htmlFor="female" >
                             Female
+                            <input
+                                type="radio"
+                                name="gender"
+                                id="female"
+                                value="female"
+                                style={{ display: "none" }}
+                            />
                         </label>
-                        <input
-                            type="radio"
-                            name="gender"
-                            id="female"
-                            value="female"
-                            style={styles.input}
-                        />
                     </div>
-                    <button type="submit" style={styles.button}>
+                    <button type="submit" >
                         Create Teacher
                     </button>
                 </form>
@@ -224,54 +238,4 @@ const CreateTeacher = () => {
     );
 };
 export default CreateTeacher
-const styles = {
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        // minHeight: "100vh",
-        background: "#f1f5f9",
-    },
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        width: "480px",
-        padding: "20px",
-        borderRadius: "10px",
-        background: "#fff",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-    },
-    heading: {
-        textAlign: "center",
-        marginBottom: "10px",
-    },
-    label: {
-        marginTop: "10px",
-        fontSize: "14px",
-    },
-    input: {
-        padding: "8px",
-        marginTop: "5px",
-        borderRadius: "5px",
-        border: "1px solid #ccc",
-    },
-    button: {
-        marginTop: "15px",
-        padding: "10px",
-        background: "#2563eb",
-        color: "#fff",
-        border: "none",
-        borderRadius: "5px",
-        cursor: "pointer",
-    },
-    radioGroup: {
-        display: "flex",
-        gap: "10px",
-        marginTop: "10px",
-        alignItems: "flex-end",
-    },
-    smallText: {
-        fontSize: "12px",
-        color: "red",
-    },
-};
+
