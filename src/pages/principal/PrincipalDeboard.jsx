@@ -25,7 +25,7 @@ const PrincipalDesboard = () => {
                     <button className="hamburger" onClick={() => setOpen(!open)}>
                         <FaBars />
                     </button>
-                    <LogOut />
+
                 </div>
             </div>
 
@@ -48,6 +48,7 @@ const PrincipalDesboard = () => {
                 <button onClick={() => { navigate("/principal/update-password"); setOpen(!open) }}>
                     Update Password
                 </button>
+                <LogOut />
             </div>
 
             <Outlet />

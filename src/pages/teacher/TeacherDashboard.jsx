@@ -22,7 +22,7 @@ const TeacherDashboard = () => {
                     <button className="hamburger" onClick={() => setOpen(!open)}>
                         <FaBars />
                     </button>
-                    <LogOut />
+
                 </div>
             </div>
 
@@ -35,6 +35,7 @@ const TeacherDashboard = () => {
                 <button onClick={() => { navigate("/teacher/view-homework"); setOpen(!open) }}>View Homework</button>
                 <button onClick={() => { navigate("/teacher/view-post"); setOpen(!open) }} >Social</button>
                 <button onClick={() => { navigate("/teacher/update-password"); setOpen(!open) }}>Update Password</button>
+                <LogOut />
             </div>
             <Outlet />
         </div>

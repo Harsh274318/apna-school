@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import api from "../api.js"
 import { toast } from "react-toastify";
 import Context from "../components/context/Context.jsx";
-
+import capitalize from "../components/utils/capitalize.js"
 const categoryColors = {
     announcement: { bg: "#EEEDFE", color: "#3C3489" },
     study: { bg: "#E1F5EE", color: "#085041" },
@@ -80,7 +80,7 @@ const PostCard = ({ item }) => {
                         <img src={item?.userUrl || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775638071/zgvl1ydotjed2eamz7ig.png"} alt={item.name} />
                     </div>
                     <div>
-                        <p className="post-author-name">{item.name}</p>
+                        <p className="post-author-name">{capitalize(item.name)}</p>
                         <p className="post-date">{item.email}</p>
                         <p className="post-date">
                             {new Date(item.createdAt).toLocaleDateString("en-IN", {
@@ -147,7 +147,7 @@ const PostCard = ({ item }) => {
                                 <img src={c.url || "https://i.pravatar.cc/100"} alt={c.user} />
                             </div>
                             <div className="comment-bubble">
-                                <p className="comment-user">{c.user}</p>
+                                <p className="comment-user">{capitalize(c.user)}</p>
                                 <p className="comment-msg">{c.message}</p>
                             </div>
                             {c.userId?.toString() === user.id?.toString() && <div>

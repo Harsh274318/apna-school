@@ -22,7 +22,7 @@ const StudentDashboard = () => {
                     <button className="hamburger" onClick={() => setOpen(!open)}>
                         <FaBars />
                     </button>
-                    <LogOut />
+
                 </div>
 
             </div>
@@ -34,6 +34,7 @@ const StudentDashboard = () => {
                 <button onClick={() => { navigate("social"); setOpen(!open) }}>posts</button>
 
                 <button onClick={() => { navigate("update-password"); setOpen(!open) }}>Update Password</button>
+                <LogOut />
             </div>
             <Outlet />
         </div>

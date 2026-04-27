@@ -25,6 +25,17 @@ const CreatePost = () => {
     imageRef.current.value = ""
     document.querySelectorAll('input[name="category"]').forEach(r => r.checked = false);
   }
+  const typeText = (element, text, speed = 300) => {
+    element.value = "";
+    let i = 0;
+
+    const interval = setInterval(() => {
+      element.value += text[i];
+      i++;
+
+      if (i >= text.length) clearInterval(interval);
+    }, speed);
+  };
   function magicAi(e) {
     e.preventDefault()
     if (titleRef.current.value.trim().length < 5 || description.current.value.trim().length < 10) return toast.warn("Write well");
@@ -34,8 +45,8 @@ const CreatePost = () => {
       .then(res => {
         const suggestion = res?.data?.data;
         if (suggestion) {
-          titleRef.current.value = suggestion.title;
-          description.current.value = suggestion.description;
+          typeText(titleRef.current, suggestion.title,300);
+          typeText(description.current, suggestion.description, 80);
         }
         toast.success("AI suggest")
       })

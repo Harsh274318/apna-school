@@ -417,8 +417,8 @@ body {
 }
 .logout-btn {
   padding: 7px 14px;
-  background: rgba(239, 68, 68, 0.12);
-  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #fca5a5 !important;
   border: 1px solid rgba(239, 68, 68, 0.25);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -428,11 +428,13 @@ body {
   transition: all 0.2s var(--ease);
 }
 .logout-btn:hover {
-  background: var(--danger);
-  color: #fff;
+  background: var(--danger) !important;
+  color: #fff !important;
   border-color: var(--danger);
 }
-
+.logout-btn::before {
+  background: rgba(255, 255, 255, 0) !important;
+}
 /* ============================================================ */
 /* SIDEBAR NAVIGATION                                           */
 /* ============================================================ */
@@ -1444,6 +1446,9 @@ input[type="number"]::-webkit-inner-spin-button {
   .Hero-school-score {
     flex-wrap: wrap;
     gap: 16px;
+  }
+  .comman-nav-btns{
+    width: auto;
   }
 }
 
