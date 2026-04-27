@@ -1471,7 +1471,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .teacher-card:nth-child(even) {
   background: linear-gradient(
     135deg,
-    rgba(250, 204, 21, 0.493),
+    rgba(252, 34, 205, 0.493),
     rgba(255, 154, 60, 0.493),
     rgba(255, 122, 92, 0.493)
   );
