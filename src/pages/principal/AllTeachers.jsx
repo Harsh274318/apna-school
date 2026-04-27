@@ -4,7 +4,7 @@ import api from "../../api.js"
 import { toast } from 'react-toastify'
 import { AiOutlineDelete } from 'react-icons/ai'
 import Loading from '../../components/forms/Loading.jsx'
-
+import capitalize from '../../components/utils/capitalize.js'
 
 const AllTeachers = () => {
   const { token, apiData, setApiData } = useContext(Context)
@@ -64,7 +64,7 @@ const AllTeachers = () => {
             <img src={item.userId.url} alt={item.userId.name} />
           </div>
           <div>
-            <p className="teacher-name">{item.userId.name}</p>
+            <p className="teacher-name">{capitalize(item.userId.name)}</p>
             <p className="teacher-email">{item.userId.email}</p>
           </div>
         </div>

@@ -5,6 +5,7 @@ import api from "../api.js";
 import Context from "../components/context/Context.jsx";
 import "./posts.css"
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { FaWandMagicSparkles } from "react-icons/fa6";
 
 
 
@@ -16,12 +17,35 @@ const CreatePost = () => {
   const imageRef = useRef();
   const { apiData, setApiData } = useContext(Context)
   const [imageSelected, setImageSelected] = useState(false);
+  const [loadingAI, setLoadingAI] = useState(false)
   function handelCancel(e) {
     e.preventDefault()
     titleRef.current.value = ""
     description.current.value = ""
     imageRef.current.value = ""
     document.querySelectorAll('input[name="category"]').forEach(r => r.checked = false);
+  }
+  function magicAi(e) {
+    e.preventDefault()
+    if (titleRef.current.value.trim().length < 5 || description.current.value.trim().length < 10) return toast.warn("Write well");
+    const refrance = { title: titleRef.current.value.trim(), description: description.current.value.trim() }
+    setLoadingAI(true)
+    api.post("/suggest", refrance)
+      .then(res => {
+        const suggestion = res?.data?.data;
+        if (suggestion) {
+          titleRef.current.value = suggestion.title;
+          description.current.value = suggestion.description;
+        }
+        toast.success("AI suggest")
+      })
+      .catch(() => {
+        toast.error("AI error")
+      })
+      .finally(() => {
+        setLoadingAI(false);
+      })
+
   }
   function handelPost(e) {
     e.preventDefault()
@@ -80,6 +104,9 @@ const CreatePost = () => {
           <h2>{user.name}</h2>
           <p>{user.email}</p>
         </div>
+        <div className="magic_btn_div">
+          <button type="button" onClick={magicAi} className={`magic_btn ${loadingAI ? "magic_loading" : ""}`} disabled={loadingAI}><FaWandMagicSparkles /></button>
+        </div>
       </div>
       <div className="post-details">
         <input type="text"
@@ -121,6 +148,7 @@ const CreatePost = () => {
 
       </div>
       <button type="button" className="btn-Cancel" onClick={handelCancel}>Cancel</button>
+
       <button type="submit" className="btn-Create" onClick={handelPost}>Create post</button>
 
     </div>

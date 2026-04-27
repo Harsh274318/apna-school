@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Loading from '../../components/forms/Loading';
 import { AiOutlineDelete } from 'react-icons/ai';
 import EditStudent from './EditStudent';
+import capitalize from '../../components/utils/capitalize';
 
 const AllStudents = () => {
     const { apiData, setApiData } = useContext(Context);
@@ -111,7 +112,7 @@ const AllStudents = () => {
                                 alt="Student" />
                         </div>
                         <div className="studentMeta">
-                            <p className="studentName">{item?.userId?.name || "User name"}</p>
+                            <p className="studentName">{capitalize(item?.userId?.name) || "User name"}</p>
                             <p className="studentEmail">{item?.userId?.email || "User Email"}</p>
                             <div className="badgeRow">
                                 <span className="badge badge-blue">Roll: {item?.rollNumber}</span>
@@ -143,7 +144,7 @@ const AllStudents = () => {
                     <div className="otherDetails">
                         <div className="detailItem">
                             <span className="detailLabel">Father's name</span>
-                            <span className="detailValue">{item?.fatherName || "—"}</span>
+                            <span className="detailValue">{capitalize(item?.fatherName) || "—"}</span>
                         </div>
                         <div className="detailItem">
                             <span className="detailLabel">Date of birth</span>

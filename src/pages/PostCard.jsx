@@ -109,7 +109,7 @@ const PostCard = ({ item }) => {
 
             <div className="post-body">
                 <p className="post-title">{item.title}</p>
-                <p dangerouslySetInnerHTML={{ __html: formatText(item.description) }} />
+                <p className="post-desc" dangerouslySetInnerHTML={{ __html: formatText(item.description) }} />
                 {item.imageurl && (
                     <div className="post-image">
                         <img src={item.imageurl} alt="post" />
