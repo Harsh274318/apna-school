@@ -58,33 +58,33 @@ const AllTeachers = () => {
     {apiData.loading && <Loading />}
     {!apiData.loading && teacher && teacher.map(item => (
 
-      <div key={item._id} style={{
-        background: item.gender === "Female" ? "#FCE4EC" : "#E3F2FD",
-        borderRadius: "12px",
-        border: "0.5px solid var(--color-border-tertiary)",
-        padding: "14px 16px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        marginBottom: "12px"
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <div style={{ width: 48, height: 48, borderRadius: "50%", overflow: "hidden", flexShrink: 0 }}>
-            <img src={item.userId.url} alt={item.userId.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      <div key={item._id} className="teacher-card">
+        <div className="teacher-left">
+          <div className="teacher-img">
+            <img src={item.userId.url} alt={item.userId.name} />
           </div>
           <div>
-            <p style={{ margin: 0, fontSize: 15, fontWeight: 500 }}>{item.userId.name}</p>
-            <p style={{ margin: 0, fontSize: 13, color: "var(--color-text-secondary)" }}>{item.userId.email}</p>
+            <p className="teacher-name">{item.userId.name}</p>
+            <p className="teacher-email">{item.userId.email}</p>
           </div>
         </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <span style={{ background: "#add6ff", color: "#0C447C", fontSize: 12, padding: "10px", borderRadius: "21px" }}>
+
+        <div className="teacher-right">
+          <span className="badge class-badge">
             Class {item.classAssigned}
           </span>
-          <span style={{ background: item.gender === "Female" ? "#FBEAF0" : "#E1F5EE", color: item.gender === "Female" ? "#72243E" : "#085041", fontSize: 12, padding: "10px", borderRadius: "14px" }}>
+
+          <span className={`badge gender-badge ${item.gender === "Female" ? "female" : "male"}`}>
             {item.gender}
           </span>
-          <button type='button' className="delete-btn" onClick={(e) => handelDeleteTeacher(e, item.userId.email)}><AiOutlineDelete /></button>
+
+          <button
+            type="button"
+            className="delete-btn"
+            onClick={(e) => handelDeleteTeacher(e, item.userId.email)}
+          >
+            <AiOutlineDelete />
+          </button>
         </div>
       </div>
 

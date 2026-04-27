@@ -1405,7 +1405,8 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: flex-start;
   }
   .form-container {
-    margin: 24px 16px;
+    margin: 24px 10px;
+    max-width: 300px;
     padding: 28px 20px;
   }
   .Teacher-form {
@@ -1438,5 +1439,110 @@ input[type="number"]::-webkit-inner-spin-button {
   .Hero-school-score {
     flex-wrap: wrap;
     gap: 16px;
+  }
+}
+
+/* All teachers css  */
+.teacher-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: 0.2s;
+}
+
+.teacher-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.teacher-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.teacher-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.teacher-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.teacher-name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.teacher-email {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.teacher-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Class badge */
+.class-badge {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* Gender badge */
+.gender-badge.male {
+  background: #e1f5ee;
+  color: #085041;
+}
+
+.gender-badge.female {
+  background: #fbeaf0;
+  color: #72243e;
+}
+
+/* Delete btn */
+.delete-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  color: #ef4444;
+}
+
+/* 🔥 Responsive */
+@media (max-width: 768px) {
+  .teacher-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .teacher-right {
+    width: 100%;
   }
 }
