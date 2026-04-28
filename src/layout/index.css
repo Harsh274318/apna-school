@@ -953,15 +953,15 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* Option 1: Every 5 items ko repeat karo */
 .listItem:nth-child(5n + 6):nth-child(-n + 10) {
-  /* Combo 2 */
+  cursor: pointer;
 }
 
 /* Option 2: Pattern repeat - ABCDEABCDE... */
 .listItem:nth-child(10n + 6) {
-  /* Combo 1 - positions 6, 16, 26... */
+  cursor: pointer;
 }
 .listItem:nth-child(10n + 7) {
-  /* Combo 2 - positions 7, 17, 27... */
+  cursor: pointer;
 }
 
 /* ============================================================ */
@@ -1447,8 +1447,13 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-wrap: wrap;
     gap: 16px;
   }
-  .comman-nav-btns{
+  .comman-nav-btns {
     width: auto;
+  }
+  .Toastify__toast {
+    width: auto;
+    max-width: 300px;
+    display: inline-flex;
   }
 }
 
@@ -1577,3 +1582,5 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
   }
 }
+
+/* toast */

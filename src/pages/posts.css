@@ -531,6 +531,8 @@
 
 .ancer {
   font-size: 12px;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 .all_posts {
   height: 100%;
@@ -621,7 +623,20 @@
   outline: none;
   cursor: not-allowed;
 }
-
+.disable_btn {
+  color: rgb(186, 182, 182);
+  background: rgb(138, 138, 138);
+  border: none;
+  outline: none;
+  cursor: not-allowed;
+}
+.disable_btn:hover{
+  color: rgb(186, 182, 182);
+  background: rgb(138, 138, 138);
+  border: none;
+  outline: none;
+  cursor: not-allowed;
+}
 @keyframes pulseGlow {
   0% {
     transform: scale(1);

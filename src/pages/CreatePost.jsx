@@ -18,6 +18,8 @@ const CreatePost = () => {
   const { apiData, setApiData } = useContext(Context)
   const [imageSelected, setImageSelected] = useState(false);
   const [loadingAI, setLoadingAI] = useState(false)
+  const [disable, setDisable] = useState(false)
+  
   function handelCancel(e) {
     e.preventDefault()
     titleRef.current.value = ""
@@ -32,8 +34,12 @@ const CreatePost = () => {
     const interval = setInterval(() => {
       element.value += text[i];
       i++;
-
-      if (i >= text.length) clearInterval(interval);
+      element.scrollTop = element.scrollHeight;
+      setDisable(true)
+      if (i >= text.length) {
+        clearInterval(interval)
+        setDisable(false)
+      };
     }, speed);
   };
   function magicAi(e) {
@@ -41,17 +47,19 @@ const CreatePost = () => {
     if (titleRef.current.value.trim().length < 5 || description.current.value.trim().length < 10) return toast.warn("Write well");
     const refrance = { title: titleRef.current.value.trim(), description: description.current.value.trim() }
     setLoadingAI(true)
+    setDisable(true)
     api.post("/suggest", refrance)
       .then(res => {
         const suggestion = res?.data?.data;
         if (suggestion) {
-          typeText(titleRef.current, suggestion.title,300);
-          typeText(description.current, suggestion.description, 80);
+          titleRef.current.value = suggestion.title
+          typeText(description.current, suggestion.description, 100);
         }
         toast.success("AI suggest")
       })
       .catch(() => {
         toast.error("AI error")
+        setDisable(false)
       })
       .finally(() => {
         setLoadingAI(false);
@@ -116,7 +124,7 @@ const CreatePost = () => {
           <p>{user.email}</p>
         </div>
         <div className="magic_btn_div">
-          <button type="button" onClick={magicAi} className={`magic_btn ${loadingAI ? "magic_loading" : ""}`} disabled={loadingAI}><FaWandMagicSparkles /></button>
+          <button type="button" onClick={magicAi} className={`magic_btn ${loadingAI || disable ? "magic_loading" : ""}`} disabled={loadingAI || disable}><FaWandMagicSparkles /></button>
         </div>
       </div>
       <div className="post-details">
@@ -160,7 +168,7 @@ const CreatePost = () => {
       </div>
       <button type="button" className="btn-Cancel" onClick={handelCancel}>Cancel</button>
 
-      <button type="submit" className="btn-Create" onClick={handelPost}>Create post</button>
+      <button type="submit" className={`btn-Create ${disable ? "disable_btn" : ""}`} onClick={handelPost} disabled={disable}>Create post</button>
 
     </div>
   </>)
