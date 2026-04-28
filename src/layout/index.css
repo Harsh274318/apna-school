@@ -1567,8 +1567,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .delete-btn:hover {
-  color: #151515;
-  background: rgb(210, 64, 64);
+  color: #ffffff;
+  background: rgb(235, 92, 92);
 }
 
 /* 🔥 Responsive */
