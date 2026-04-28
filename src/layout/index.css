@@ -1451,9 +1451,11 @@ input[type="number"]::-webkit-inner-spin-button {
     width: auto;
   }
   .Toastify__toast {
+    min-width: 200px;
     width: auto;
     max-width: 300px;
     display: inline-flex;
+
   }
 }
 
