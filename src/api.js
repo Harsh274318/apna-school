@@ -5,11 +5,7 @@ import axios from "axios";
 
 // console.log(url)
 const api = axios.create({
-  baseURL: "https://student-backend-tx66.onrender.com/api",
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
-  // url: import.meta.env.VITE_BACKEND_URL
+  baseURL: import.meta.env.VITE_BACKEND_URL
 
 });
 api.interceptors.request.use((config) => {
@@ -22,5 +18,5 @@ api.interceptors.request.use((config) => {
 });
 
 export default api;
-// https://student-backend-tx66.onrender.com/api
+
 // http://localhost:7001/api",
