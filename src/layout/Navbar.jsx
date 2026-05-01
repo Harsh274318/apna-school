@@ -14,7 +14,7 @@ const Navbar = () => {
         const localData = JSON.parse(localStorage.getItem("user"))
         const navi = localData?.role.toLowerCase()
         navigate(`/${navi}`)
-        console.log("clicked")
+        // console.log("clicked")
     }
 
     const navigate = useNavigate()
@@ -30,11 +30,11 @@ const Navbar = () => {
                     onClick={() => { navigate("/") }}
                 >Home</button>
                 <button className="button"
-                    onClick={() => navigate("teacher-query")}
+                    onClick={() => navigate("/teacher-query")}
                 >Contact us</button>
 
                 <button className="button"
-                    onClick={() => navigate("public-post")}
+                    onClick={() => navigate("/public-post")}
                 >About</button>
             </div>
 
@@ -56,11 +56,11 @@ const Navbar = () => {
                     onClick={() => { { navigate("/") }; setOpen(!open) }}
                 >Home</button>
                 <button className="button"
-                    onClick={() => { navigate("teacher-query"); setOpen(!open) }}
+                    onClick={() => { navigate("/teacher-query"); setOpen(!open) }}
                 >Contact us</button>
 
                 <button className="button"
-                    onClick={() => { navigate("public-post"); setOpen(!open) }}
+                    onClick={() => { navigate("/public-post"); setOpen(!open) }}
                 >About</button>
                 <div className="loginSignup">
                     {token ? <button className="button"

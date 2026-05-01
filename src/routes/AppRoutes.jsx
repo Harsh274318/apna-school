@@ -65,7 +65,7 @@ const AppRoutes = () => {
                     <Route path="login" element={<LoginForm />} />
 
                 </Route >
-                <Route path="public-post" element={<PublicPost />} />
+                <Route path="/public-post" element={<PublicPost />} />
                 <Route path="/principal" element={<ProtectedRoute allowRole="Principal"><PrincipalDesboard /></ProtectedRoute>}>
                     <Route index element={<AllTeachers />} />
                     <Route path="update-password" element={<UpdatePassword />} />
