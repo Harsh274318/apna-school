@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 const Attendance = () => {
     const [attendance, setAttendance] = useState(null);
     const { apiData, setApiData } = useContext(Context);
-
+    const [percentage, setPercentage] = useState(60)
     useEffect(() => {
         setApiData(prev => ({ ...prev, loading: true }))
         api.get("/attendance")
@@ -30,43 +30,61 @@ const Attendance = () => {
 
     const presentCount = markedAttendance.filter(i => i.records?.[0]?.status === "present").length;
     const absentCount = markedAttendance.filter(i => i.records?.[0]?.status === "absent").length;
-
+    useEffect(() => {
+        const percent = markedAttendance.length
+            ? Math.round((presentCount / markedAttendance.length) * 100)
+            : 0;
+        setPercentage(percent);
+    }, [presentCount, markedAttendance])
+    // setPercentage(Math.round((presentCount / markedAttendance.length) * 100))
     return (
-        <div className='attendanceDiv'>
-            <div className='attendanceHeading'>
-                <h2>My Attendance</h2>
-            </div>
+        <div className="outterAttendance">
 
-            {!apiData.loading && attendance && (
-                <>
-                    <div className='attendance-table'>
 
-                        <div className='attendance-row header'>
-                            <span>Date</span>
-                            <span>Status</span>
+            <div className='attendanceDiv'>
+                <div className='attendanceHeading'>
+                    <h2>My Attendance</h2>
+                </div>
+
+                {!apiData.loading && attendance && (
+                    <>
+                        <div className='attendance-table'>
+
+                            <div className='attendance-row header'>
+                                <span className='date'>Date</span>
+                                <span>Status</span>
+                            </div>
+
+                            {markedAttendance.map((item, index) => {
+                                const status = item.records?.[0]?.status;
+                                const isPresent = status === "present";
+                                return (
+                                    <div key={index} className='attendance-row'>
+                                        <span className='date'>{item.date.split("-").reverse().join("-")}</span>
+                                        <span className={isPresent ? 'status-present' : 'status-absent'}>
+                                            {capitalize(status)}
+                                        </span>
+                                    </div>
+                                )
+                            })}
                         </div>
 
-                        {markedAttendance.map((item, index) => {
-                            const status = item.records?.[0]?.status;
-                            const isPresent = status === "present";
-                            return (
-                                <div key={index} className='attendance-row'>
-                                    <span>{item.date.split("-").reverse().join("-")}</span>
-                                    <span className={isPresent ? 'status-present' : 'status-absent'}>
-                                        {capitalize(status)}
-                                    </span>
-                                </div>
-                            )
-                        })}
-                    </div>
-
-                    <p className='attendance-summary'>
-                        Total: {markedAttendance.length} &nbsp;|&nbsp;
-                        Present: {presentCount} &nbsp;|&nbsp;
-                        Absent: {absentCount}
-                    </p>
-                </>
-            )}
+                        <p className='attendance-summary'>
+                            <span className='attendance-summary-spans' style={{ background: "rgb(249, 253, 204)" }}>
+                                Total: {markedAttendance.length}
+                            </span>
+                            <span className='attendance-summary-spans' style={{ background: "#b8d8bc" }}>
+                                Present: {presentCount}
+                            </span>
+                            <span className='attendance-summary-spans' style={{ background: "#f8d1d1" }}>
+                                Absent: {absentCount}
+                            </span>
+                            <span className='attendance-summary-spans' style={{ background: `${percentage >= 50 ? "#8acf92" : "#f99f9f"}` }}>Percentage: {percentage} %
+                            </span>
+                        </p>
+                    </>
+                )}
+            </div>
         </div>
     )
 }

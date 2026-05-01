@@ -7,7 +7,7 @@ const categoryColors = {
     announcement: { bg: "#EEEDFE", color: "#3C3489" },
     study: { bg: "#E1F5EE", color: "#085041" },
     news: { bg: "#FAEEDA", color: "#633806" },
-    general: { bg: "#F1EFE8", color: "#444441" },
+    general: { bg: "#9cd7cc", color: "#444441" },
     student: { bg: "#E6F1FB", color: "#0C447C" },
 };
 
@@ -20,6 +20,7 @@ const PostCard = ({ item }) => {
     const [comments, setComments] = useState(item.comments || []);
     const badge = categoryColors[item.category] || categoryColors.general;
     const { apiData, setApiData } = useContext(Context)
+    // const 
 
 
     const formatText = (text) => {

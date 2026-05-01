@@ -5,7 +5,7 @@ import axios from "axios";
 
 // console.log(url)
 const api = axios.create({
-  baseURL: "https://student-backend-tx66.onrender.com/api",
+  baseURL: "http://localhost:7001/api",
   // headers: {
   //   "Content-Type": "application/json",
   // },

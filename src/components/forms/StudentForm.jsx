@@ -99,7 +99,7 @@ const StudentForm = () => {
                                 ref={numberRef}
 
                             />
-                            <label htmlFor="dob">Enter Date of Brith</label>
+                            <label htmlFor="dob">Enter Date of Birth </label>
                             <input type="date"
                                 id="dob"
                                 name="dob"

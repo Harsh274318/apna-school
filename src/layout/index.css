@@ -21,12 +21,14 @@
   --surface: #ffffff;
   --border: #e2e8f0;
 
+  --bg-green: rgb(170, 248, 170);
+  --bg-red: rgb(248, 132, 132);
   --text-primary: #0f172a;
   --text-secondary: #64748b;
   --text-muted: #94a3b8;
 
   --sidebar-w: 260px;
-  --header-h: 64px;
+  --header-h: 60px;
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -442,7 +444,7 @@ body {
   position: fixed;
   top: var(--header-h);
   left: -280px;
-  width: var(--sidebar-w);
+  /* width: var(--sidebar-w); */
   height: calc(100vh - var(--header-h));
   background: #1e293b;
   display: flex;
@@ -1308,14 +1310,29 @@ input[type="number"]::-webkit-inner-spin-button {
   padding: 10px 16px;
   border-bottom: 1px solid #f3f4f6;
 }
+.outterAttendance {
+  display: grid;
+  place-items: center stretch;
+}
 .attendanceDiv {
-  background: beige;
+  background: rgba(74, 74, 72, 0.164);
+  backdrop-filter: blur(4px);
+  margin: 2px 5px;
+  border-radius: 12px;
+  /* max-width: 650px; */
+}
+.date{
+  color:rgb(254, 254, 254);
+}
+.attendanceDiv h2 {
+ color: whitesmoke;
+  text-align: center;
 }
 .attendance-row.header {
-  background: #b1b2b2;
-  font-weight: 500;
+  background: #b1b2b21c;
+  font-weight: 700;
   font-size: 13px;
-  color: #6b7280;
+  color: #3a3a3b;
 }
 
 .attendance-row:last-child {
@@ -1337,6 +1354,14 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 12px;
   padding-bottom: 20px;
   padding-left: 15px;
+}
+.attendance-summary-spans {
+  backdrop-filter: blur(1px);
+  box-shadow: var(--shadow-sm);
+  border-radius: 12px;
+  padding: 2px 5px;
+  margin-right: 5px;
+  border: 1px solid;
 }
 
 /* DELETE BUTTON */
@@ -1407,7 +1432,7 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: flex-start;
   }
   .form-container {
-    margin: 24px 16px;
+    margin: 24px auto;
     width: 100%;
     max-width: 350px;
     padding: 28px 20px;
@@ -1455,8 +1480,11 @@ input[type="number"]::-webkit-inner-spin-button {
     width: auto;
     max-width: 300px;
     display: inline-flex;
-
   }
+  .attendance-summary-spans{
+    font-size: 10px;
+  }
+
 }
 
 /* All teachers css  */
@@ -1584,5 +1612,3 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 100%;
   }
 }
-
-/* toast */

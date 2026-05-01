@@ -50,6 +50,7 @@ const MarkAttendance = lazy(() => import("../pages/teacher/MarkAttendance"));
 // const CreateStudent = lazy(() => import("../components/forms/CreateStudent"));
 // Social
 import CreateStudent from "../components/forms/CreateStudent";
+import PublicPost from "../pages/PublicPost";
 
 const AppRoutes = () => {
     return (
@@ -64,6 +65,7 @@ const AppRoutes = () => {
                     <Route path="login" element={<LoginForm />} />
 
                 </Route >
+                <Route path="public-post" element={<PublicPost />} />
                 <Route path="/principal" element={<ProtectedRoute allowRole="Principal"><PrincipalDesboard /></ProtectedRoute>}>
                     <Route index element={<AllTeachers />} />
                     <Route path="update-password" element={<UpdatePassword />} />

@@ -149,9 +149,14 @@
   color: #0c447c;
   border-color: #0c447c;
 }
+.category-pill label[for="public"]:has(input:checked) {
+  background: #d9f5e6;
+  color: #444441;
+  border-color: #444441;
+}
 
 .category-pill label[for="general"]:has(input:checked) {
-  background: #f1efe8;
+  background: #f7dcfb;
   color: #444441;
   border-color: #444441;
 }
@@ -341,7 +346,7 @@
 .post-image img {
   width: 100%;
   max-height: 220px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -659,5 +664,13 @@
 
   100% {
     transform: rotate(15deg);
+  }
+}
+.public-post{
+  padding: 20px 60px;
+}
+@media (max-width:480px){
+    .public-post{
+    padding: 20px 15px;
   }
 }
