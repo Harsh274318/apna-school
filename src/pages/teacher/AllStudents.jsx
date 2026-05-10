@@ -1,5 +1,5 @@
 // AllStudents.jsx
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Context from '../../components/context/Context'
 import api from '../../api';
 import { toast } from 'react-toastify';
@@ -7,34 +7,56 @@ import Loading from '../../components/forms/Loading';
 import { AiOutlineDelete } from 'react-icons/ai';
 import EditStudent from './EditStudent';
 import capitalize from '../../components/utils/capitalize';
+import shortedList from '../../components/utils/sort';
+import { GiCrossedSabres } from 'react-icons/gi';
 
 const AllStudents = () => {
     const { apiData, setApiData } = useContext(Context);
-
+    const [flag, setFlag] = useState(false);
+    const [show, setShow] = useState(false);
+    const [stemail, setEmail] = useState("")
+    const emailRef = useRef("")
     useEffect(() => {
         setApiData(prev => ({ ...prev, loading: true }))
         api.get("/students")
             .then(res => {
                 setApiData(prev => ({ ...prev, loading: false, students: res.data.data }))
                 toast.success("All students")
+                setFlag(() => true)
             })
             .catch(() => {
                 setApiData(prev => ({ ...prev, loading: false }))
                 toast.error("Students not found!")
             })
     }, [])
-
-    function handelDelete(e, email) {
+    useEffect(() => {
+        if (flag) {
+            handalSorting("rollNumber")
+        }
+    }, [flag])
+    useEffect(() => {
+        if (show) {
+            emailRef.current.focus()
+            emailRef.current.select()
+        }
+    }, [show])
+    function handelDelete(e) {
         e.preventDefault();
-        if (!email) return toast.error("Email not Found!")
+        // if (!email) return toast.error("Email not Found!")
+        if (emailRef.current.value.trim() !== stemail.trim()) {
+            return toast.warn("Invalid email")
+        }
+
         setApiData(prev => ({ ...prev, loading: true }))
-        api.delete("/delete-Student", { data: { email } })
+        api.delete("/delete-Student", { data: { email: stemail } })
             .then(() => {
                 setApiData(prev => ({
                     ...prev, loading: false,
                     students: prev.students.filter(s => s?.userId?.email !== email)
                 }))
+                setShow(!show)
                 toast.success("Student deleted!")
+
             })
             .catch(() => {
                 setApiData(prev => ({ ...prev, loading: false }))
@@ -89,11 +111,29 @@ const AllStudents = () => {
                 toast.error("Update failed!")
             })
     }
+    function handalSorting(sortIt, nested = null) {
+        const sortedData = shortedList(apiData.students, sortIt, nested)
+        setApiData(prev => ({ ...prev, students: sortedData }))
+    }
 
     return (
         <>
-            {apiData.loading && <Loading />}
+            <div className='ask-outter-div' style={{ display: show ? "flex" : "none" }} onClick={() => setShow(!show)}>
+                <div className='ask-div' onClick={(e) => e.stopPropagation()}>
+                    <p>Confirm Email</p>
+                    <button className='delete-cross-btn' onClick={() => setShow(!show)}><GiCrossedSabres /></button>
+                    <label htmlFor="email">Student email</label>
+                    <input type="email" name="email" id="email" placeholder='student12@gmail.com' ref={emailRef}
 
+                    />
+                    <button type='button' className='delete-btn' onClick={(e) => handelDelete(e)}>Delete</button>
+                </div>
+            </div>
+            {apiData.loading && <Loading />}
+            <div className='sorting_div'>
+                <button onClick={() => handalSorting("rollNumber")}>Roll No ↑↓</button>
+                <button onClick={() => handalSorting("userId", "name")}>Name A-Z</button>
+            </div>
             {apiData.updateStudent && (
                 <EditStudent
                     student={apiData.updateStudent}
@@ -138,7 +178,9 @@ const AllStudents = () => {
                                 border: "none",
                                 borderRadius: "6px",
                                 cursor: "pointer"
-                            }} onClick={(e) => handelDelete(e, item?.userId?.email)}><AiOutlineDelete /></button>
+                            }} onClick={(e) => { setShow(!show), setEmail(item?.userId?.email) }
+                                //  handelDelete(e, item?.userId?.email)
+                            }><AiOutlineDelete /></button>
                         </div>
                     </div>
                     <div className="otherDetails">
@@ -154,7 +196,7 @@ const AllStudents = () => {
                         </div>
                         <div className="detailItem">
                             <span className="detailLabel">Gender</span>
-                            <span className="detailValue">{item?.gender}</span>
+                            <span className="detailValue">{capitalize(item?.gender)}</span>
                         </div>
                         <div className="detailItem">
                             <span className="detailLabel">Parent mobile</span>
@@ -162,11 +204,11 @@ const AllStudents = () => {
                         </div>
                         <div className="detailItem">
                             <span className="detailLabel">Notify via</span>
-                            <span className="detailValue">{item?.notifyMethod}</span>
+                            <span className="detailValue">{capitalize(item?.notifyMethod)}</span>
                         </div>
                         <div className="detailItem">
                             <span className="detailLabel">Address</span>
-                            <span className="detailValue">{item?.address}</span>
+                            <span className="detailValue">{capitalize(item?.address)}</span>
                         </div>
                     </div>
                 </div>

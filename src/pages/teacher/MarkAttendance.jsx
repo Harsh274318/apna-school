@@ -4,6 +4,7 @@ import Loading from '../../components/forms/Loading';
 import api from '../../api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import shortedList from '../../components/utils/sort';
 
 const MarkAttendance = () => {
     const { apiData, setApiData } = useContext(Context)
@@ -82,11 +83,19 @@ const MarkAttendance = () => {
                 })
         }
     }, [])
+    function handalSorting(sortIt, nested = null) {
+        const sortedData = shortedList(apiData.students, sortIt, nested)
+        setApiData(prev => ({ ...prev, students: sortedData }))
+    }
     return (<>
 
         {apiData.loading && <Loading />}
 
-
+        <div className='sorting_div'>
+            <button onClick={() => handalSorting("rollNumber")}>Roll No ↑↓</button>
+            <button onClick={() => handalSorting("userId", "name")}>Name A-Z</button>
+        </div>
+        {console.log(apiData.students)}
         {!apiData.loading && apiData.students && apiData.students.map(item => (
             <div className="student-attendance" key={item._id}>
                 <div className="att-left">

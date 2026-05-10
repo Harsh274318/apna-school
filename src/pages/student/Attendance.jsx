@@ -83,7 +83,7 @@ const Attendance = () => {
                             </span>
                         </p>
                     </>
-                )}
+                ) || <h1>Attendance Not Found</h1>}
             </div>
         </div>
     )

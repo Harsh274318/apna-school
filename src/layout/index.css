@@ -1321,11 +1321,11 @@ input[type="number"]::-webkit-inner-spin-button {
   border-radius: 12px;
   /* max-width: 650px; */
 }
-.date{
-  color:rgb(254, 254, 254);
+.date {
+  color: rgb(254, 254, 254);
 }
 .attendanceDiv h2 {
- color: whitesmoke;
+  color: whitesmoke;
   text-align: center;
 }
 .attendance-row.header {
@@ -1481,10 +1481,9 @@ input[type="number"]::-webkit-inner-spin-button {
     max-width: 300px;
     display: inline-flex;
   }
-  .attendance-summary-spans{
+  .attendance-summary-spans {
     font-size: 10px;
   }
-
 }
 
 /* All teachers css  */
@@ -1611,4 +1610,81 @@ input[type="number"]::-webkit-inner-spin-button {
   .teacher-right {
     width: 100%;
   }
+}
+
+/* sorting_div */
+.sorting_div {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.sorting_div button {
+  padding: 2px 5px;
+  border-radius: 12px;
+  outline: none;
+  border: 1px solid rgb(179, 179, 179);
+  background: #e5e7eb89;
+  color: #111827;
+  font-weight: 500;
+  backdrop-filter: blur(6px);
+  font-family: cursive;
+}
+.ask-outter-div {
+  position: absolute;
+  z-index: 9099;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(126, 125, 125, 0.137);
+  backdrop-filter: blur(3px);
+}
+.ask-div {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  background: white;
+  padding: 50px;
+  border-radius: 12px;
+  box-shadow: 12px 12px 12px rgb(129, 128, 128);
+  font-family: cursive;
+}
+.ask-div p {
+  text-align: center;
+  color: rgb(223, 66, 66);
+  font-weight: 500;
+  font-family: cursive;
+}
+.ask-div input {
+  padding: 5px 10px;
+  border-radius: 24px;
+  border: 1px solid rgb(138, 137, 137);
+  outline: none;
+  width: 200px;
+}
+.delete-cross-btn {
+  background: transparent;
+  width: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.delete-btn {
+  background: rgb(223, 66, 66);
+  outline: none;
+  border: none;
+  color: black;
+  padding: 5px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: cursive;
 }

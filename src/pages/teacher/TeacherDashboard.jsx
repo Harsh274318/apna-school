@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { Outlet, useNavigate } from "react-router-dom";
 import LogOut from "../../layout/LogOut";
+import capitalize from "../../components/utils/capitalize";
 
 const TeacherDashboard = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const TeacherDashboard = () => {
                     src={localData?.url || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
                     alt={localData.public_id}
                 />
-                <h1>Welcome Back, {localData?.name || "Loading..."}</h1>
+                <h1>Welcome Back, {capitalize(localData?.name) || "Loading..."}</h1>
                 <p>Role: {localData?.role || "Loading..."}</p>
                 <div className="top-bar">
                     <button className="hamburger" onClick={() => setOpen(!open)}>

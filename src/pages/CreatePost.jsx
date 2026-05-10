@@ -20,7 +20,6 @@ const CreatePost = () => {
   const [loadingAI, setLoadingAI] = useState(false)
   const [disable, setDisable] = useState(false)
   const notStudent = (user?.role === "Principal" || user?.role === "Teacher")
-  console.log(notStudent)
   function handelCancel(e) {
     e.preventDefault()
     titleRef.current.value = ""
@@ -103,7 +102,6 @@ const CreatePost = () => {
 
       })
       .catch(err => {
-        console.log(err.message);
         setApiData(prev => ({
           ...prev, loading: false
         }))
