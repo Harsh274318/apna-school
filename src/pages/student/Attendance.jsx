@@ -12,7 +12,7 @@ const Attendance = () => {
         api.get("/attendance")
             .then(res => {
                 setApiData(prev => ({ ...prev, loading: false }))
-                setAttendance(res.data.data);
+                setAttendance(res.data.data.reverse());
                 toast.success("Attendance loaded!");
             })
             .catch(() => {

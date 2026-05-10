@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Context from '../../components/context/Context'
 import Loading from '../../components/forms/Loading';
 import api from '../../api';
@@ -14,7 +14,7 @@ const MarkAttendance = () => {
             [s._id]: "present"
         }), {})
     );
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
 
     function handleMarkAttendance(e) {
         e.preventDefault();
@@ -63,6 +63,25 @@ const MarkAttendance = () => {
 
     }
     // if(attendance.length == 0) return navigate("/teacher")
+    useEffect(() => {
+        if (apiData.students.length === 0) {
+            setApiData(prev => ({ ...prev, loading: true }))
+            api.get("/students")
+                .then(res => {
+                    setApiData(prev => ({ ...prev, loading: false, students: res.data.data }))
+                    setAttendance(
+                        res.data.data.reduce((acc, s) => ({
+                            ...acc,
+                            [s._id]: "present"
+                        }), {}))
+                    toast.success("All students")
+                })
+                .catch(() => {
+                    setApiData(prev => ({ ...prev, loading: false }))
+                    toast.error("Students not found!")
+                })
+        }
+    }, [])
     return (<>
 
         {apiData.loading && <Loading />}
