@@ -67,11 +67,16 @@ body {
   flex-direction: column;
   height: 100vh;
   background: url("https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1777229205/background_mnp9wn.png");
+  /* background: url("https://img.uhdpaper.com/wallpaper/lol-star-guardian-school-921@1@h-preview.jpg?dl"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: auto;
 }
+/* .inner-layout {
+  background: rgba(173, 18, 18, 0.155);
+  height: 100%;
+} */
 /* ============================================================ */
 /* NAVBAR                                                        */
 /* ============================================================ */
@@ -443,7 +448,7 @@ body {
 .comman-nav-btns {
   position: fixed;
   top: var(--header-h);
-  left: -280px;
+  right: -280px;
   /* width: var(--sidebar-w); */
   height: calc(100vh - var(--header-h));
   background: #1e293b;
@@ -451,14 +456,14 @@ body {
   flex-direction: column;
   padding: 20px 12px;
   gap: 4px;
-  transition: left 0.3s var(--ease);
+  transition: right 0.3s var(--ease);
   z-index: 1000;
   overflow-y: auto;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 .comman-nav-btns.open {
-  left: 0;
+  right: 0;
 }
 .comman-nav-btns::before {
   content: "NAVIGATION";
@@ -977,6 +982,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .studentMain {
   background: var(--surface);
+  /* background: rgba(93, 156, 45, 0.128);
+  backdrop-filter: blur(15px); */
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
   overflow: hidden;
@@ -989,9 +996,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .basicDetails {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
-  padding: 16px 18px;
+  padding: 16px 18px 0px 18px;
+  /* border-bottom: 1px solid var(--border); */
+}
+.parant-basicDetails {
   border-bottom: 1px solid var(--border);
 }
 .studentImage {
@@ -1026,6 +1036,12 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+  padding: 0px 10px 10px 15px;
+}
+@media (min-width: 350px) {
+  .badgeRow {
+    margin-left: 52px;
+  }
 }
 .badge {
   font-size: 11px;
@@ -1617,7 +1633,10 @@ input[type="number"]::-webkit-inner-spin-button {
   display: flex;
   justify-content: end;
   gap: 10px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgb(255, 255, 255);
 }
 
 .sorting_div button {

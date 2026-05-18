@@ -12,33 +12,36 @@ const TeacherDashboard = () => {
     const [open, setOpen] = useState(false);
     return (
         <div className="main_layout" >
-            <div className="desboards">
-                <img
-                    src={localData?.url || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
-                    alt={localData.public_id}
-                />
-                <h1>Welcome Back, {capitalize(localData?.name) || "Loading..."}</h1>
-                <p>Role: {localData?.role || "Loading..."}</p>
-                <div className="top-bar">
-                    <button className="hamburger" onClick={() => setOpen(!open)}>
-                        <FaBars />
-                    </button>
+            <div className="inner-layout">
 
+                <div className="desboards">
+                    <img
+                        src={localData?.url || "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1775665639/j4sdltuncr8gavw741mb.png"}
+                        alt={localData.public_id}
+                    />
+                    <h1>Welcome Back, {capitalize(localData?.name) || "Loading..."}</h1>
+                    <p>Role: {localData?.role || "Loading..."}</p>
+                    <div className="top-bar">
+                        <button className="hamburger" onClick={() => setOpen(!open)}>
+                            <FaBars />
+                        </button>
+
+                    </div>
                 </div>
-            </div>
 
-            <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
-                <button onClick={() => { navigate("/"); setOpen(!open) }}>Home</button>
-                <button onClick={() => { navigate("/teacher"); setOpen(!open) }}>My Students</button>
-                <button onClick={() => { navigate("create-student"); setOpen(!open) }}>Create Student</button>
-                <button onClick={() => { navigate("mark-attendance"); setOpen(!open) }}>Mark Attendance</button>
-                <button onClick={() => { navigate("/teacher/add-homework"); setOpen(!open) }}>Add Homework</button>
-                <button onClick={() => { navigate("/teacher/view-homework"); setOpen(!open) }}>View Homework</button>
-                <button onClick={() => { navigate("/teacher/view-post"); setOpen(!open) }} >Social</button>
-                <button onClick={() => { navigate("/teacher/update-password"); setOpen(!open) }}>Update Password</button>
-                <LogOut />
+                <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
+                    <button onClick={() => { navigate("/"); setOpen(!open) }}>Home</button>
+                    <button onClick={() => { navigate("/teacher"); setOpen(!open) }}>My Students</button>
+                    <button onClick={() => { navigate("create-student"); setOpen(!open) }}>Create Student</button>
+                    <button onClick={() => { navigate("mark-attendance"); setOpen(!open) }}>Mark Attendance</button>
+                    <button onClick={() => { navigate("/teacher/add-homework"); setOpen(!open) }}>Add Homework</button>
+                    <button onClick={() => { navigate("/teacher/view-homework"); setOpen(!open) }}>View Homework</button>
+                    <button onClick={() => { navigate("/teacher/view-post"); setOpen(!open) }} >Social</button>
+                    <button onClick={() => { navigate("/teacher/update-password"); setOpen(!open) }}>Update Password</button>
+                    <LogOut />
+                </div>
+                <Outlet />
             </div>
-            <Outlet />
         </div>
     );
 };

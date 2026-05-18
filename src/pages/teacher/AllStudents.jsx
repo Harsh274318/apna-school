@@ -144,44 +144,54 @@ const AllStudents = () => {
 
             {!apiData.loading && (apiData.students || []).map(item => (
                 <div className="studentMain" key={item?._id}>
-                    <div className="basicDetails">
-                        <div className="studentImage">
-                            <img src={item?.userId?.url || (item?.gender === "male"
-                                ? "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1776136342/maleUser_p4l5ft.jpg"
-                                : "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1776136605/female_uydjww.jpg")}
-                                alt="Student" />
-                        </div>
-                        <div className="studentMeta">
-                            <p className="studentName">{capitalize(item?.userId?.name) || "User name"}</p>
-                            <p className="studentEmail">{item?.userId?.email || "User Email"}</p>
-                            <div className="badgeRow">
+                    <div className='parant-basicDetails'>
+
+                        <div className="basicDetails">
+                            <div className="studentImage">
+                                <img src={item?.userId?.url || (item?.gender === "male"
+                                    ? "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1776136342/maleUser_p4l5ft.jpg"
+                                    : "https://res.cloudinary.com/harsh-vardhan-pal/image/upload/v1776136605/female_uydjww.jpg")}
+                                    alt="Student" />
+                            </div>
+                            <div className="studentMeta">
+                                <p className="studentName">{capitalize(item?.userId?.name) || "User name"}</p>
+                                <p className="studentEmail">{item?.userId?.email || "User Email"}</p>
+                                {/* <div className="badgeRow">
                                 <span className="badge badge-blue">Roll: {item?.rollNumber}</span>
                                 <span className="badge badge-teal">Class {item?.class}</span>
                                 <span className="badge badge-purple">{item?.session}</span>
                                 <span className="badge badge-green">{item?.isActive ? "Active" : "Inactive"}</span>
+                            </div> */}
+                            </div>
+                            <div className='edit-btn'>
+                                <button type='button' style={{
+                                    padding: "6px 12px",
+                                    backgroundColor: "#3b82f6",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "6px",
+                                    cursor: "pointer",
+                                    marginRight: "8px"
+                                }} onClick={() => setApiData(prev => ({ ...prev, updateStudent: item }))}>Edit</button>
+                                <button type='button' style={{
+                                    padding: "6px 10px",
+                                    backgroundColor: "#ef4444",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "6px",
+                                    cursor: "pointer"
+                                }} onClick={(e) => { setShow(!show), setEmail(item?.userId?.email) }
+                                    //  handelDelete(e, item?.userId?.email)
+                                }><AiOutlineDelete /></button>
                             </div>
                         </div>
-                        <div className='edit-btn'>
-                            <button type='button' style={{
-                                padding: "6px 12px",
-                                backgroundColor: "#3b82f6",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "6px",
-                                cursor: "pointer",
-                                marginRight: "8px"
-                            }} onClick={() => setApiData(prev => ({ ...prev, updateStudent: item }))}>Edit</button>
-                            <button type='button' style={{
-                                padding: "6px 10px",
-                                backgroundColor: "#ef4444",
-                                color: "#fff",
-                                border: "none",
-                                borderRadius: "6px",
-                                cursor: "pointer"
-                            }} onClick={(e) => { setShow(!show), setEmail(item?.userId?.email) }
-                                //  handelDelete(e, item?.userId?.email)
-                            }><AiOutlineDelete /></button>
+                        <div className="badgeRow">
+                            <span className="badge badge-blue">Roll: {item?.rollNumber}</span>
+                            <span className="badge badge-teal">Class {item?.class}</span>
+                            <span className="badge badge-purple">{item?.session}</span>
+                            <span className="badge badge-green">{item?.isActive ? "Active" : "Inactive"}</span>
                         </div>
+
                     </div>
                     <div className="otherDetails">
                         <div className="detailItem">
