@@ -7,8 +7,7 @@ const SocialPage = () => {
     return (
         <div className="social-page">
             <div>
-
-                <div style={flag ? { display: "none" } : { display: "flex" }}>
+                <div className={flag ? "hideCreate" : "create_post_parent"}>
                     <CreatePost />
                 </div>
                 <button className="show_CreatePost" onClick={() => setFlag(!flag)}>{flag ? "Create Post" : "Hide card"}{flag ? < BiDownArrowAlt /> : <BiUpArrowAlt />}</button>

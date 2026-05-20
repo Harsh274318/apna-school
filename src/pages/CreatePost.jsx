@@ -69,7 +69,8 @@ const CreatePost = () => {
   function handelPost(e) {
     e.preventDefault()
     const category = document.querySelector('input[name="category"]:checked')?.value;
-    if (!titleRef.current.value.trim() || !description.current.value.trim() || !category.trim()) return toast.error("Fill all fileds");
+    if (!category) return toast.error("didn't Check Category yet")
+    if (!titleRef.current.value.trim() || !description.current.value.trim() || !category) return toast.error("Fill all fileds");
     if (titleRef.current.value.trim().length < 5 || description.current.value.trim().length < 10) return toast.error("Write well");
     const formData = new FormData()
     formData.append("title", titleRef.current.value.trim());

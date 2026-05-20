@@ -442,6 +442,26 @@ body {
 .logout-btn::before {
   background: rgba(255, 255, 255, 0) !important;
 }
+.mobile-nav {
+  position: fixed;
+  top: 60px;
+  /* right: -280px; */
+  /* width: 260px; */
+  display: none;
+  height: calc(100vh - 60px);
+  background: #1e293b;
+  
+  flex-direction: column;
+  padding: 20px 12px;
+  gap: 10px;
+  transition: 0.3s;
+  z-index: 2000;
+}
+
+.mobile-nav.open {
+  right: 0;
+  display: flex;
+}
 /* ============================================================ */
 /* SIDEBAR NAVIGATION                                           */
 /* ============================================================ */
@@ -449,7 +469,7 @@ body {
   position: fixed;
   top: var(--header-h);
   right: -280px;
-  /* width: var(--sidebar-w); */
+  width: var(--sidebar-w);
   height: calc(100vh - var(--header-h));
   background: #1e293b;
   display: flex;
@@ -1488,9 +1508,9 @@ input[type="number"]::-webkit-inner-spin-button {
     flex-wrap: wrap;
     gap: 16px;
   }
-  .comman-nav-btns {
+  /* .comman-nav-btns {
     width: auto;
-  }
+  } */
   .Toastify__toast {
     min-width: 200px;
     width: auto;

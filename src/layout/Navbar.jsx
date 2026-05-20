@@ -35,7 +35,7 @@ const Navbar = () => {
 
                 <button className="button"
                     onClick={() => navigate("/public-post")}
-                >About</button>
+                >Post</button>
             </div>
 
             <div className="loginSignup ttt">
@@ -51,7 +51,7 @@ const Navbar = () => {
                 </button>
 
             </div>
-            <div className={`comman-nav-btns ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
+            <div className={`mobile-nav ${open ? "open" : ""}`} onClick={() => setOpen(false)}>
                 <button className="button"
                     onClick={() => { { navigate("/") }; setOpen(!open) }}
                 >Home</button>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
                 <button className="button"
                     onClick={() => { navigate("/public-post"); setOpen(!open) }}
-                >About</button>
+                >Post</button>
                 <div className="loginSignup">
                     {token ? <button className="button"
                         onClick={handalNavigate}
