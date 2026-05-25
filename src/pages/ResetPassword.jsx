@@ -39,13 +39,20 @@ const ResetPassword = () => {
                 passwordRef.current.value = ""
                 emailRef.current.value = ""
                 document.querySelectorAll('input[name="role"]').forEach(r => r.checked = false);
-                toast.success("Password reset successfully!")
+                toast.success(res?.data?.message||"Password reset successfully!")
             })
             .catch(err => {
                 setApiData(prev => ({
                     ...prev, loading: false
-                }))
-                toast.error("Something is wrong")
+                }));
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Something is wrong")
             })
 
     }

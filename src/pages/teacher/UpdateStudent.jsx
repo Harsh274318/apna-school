@@ -21,18 +21,25 @@ const UpdateStudent = () => {
             ...prev, loading: true
         }))
         api.patch(`/update-student?rollNumber=${editStudent?.rollNumber}&userId=${editStudent?._id}`, editStudent)
-            .then(() => {
+            .then((res) => {
                 setApiData(prev => ({
                     ...prev, loading: false, updateStudent: null
                 }))
 
-                toast.success("Student updated")
+                toast.success(res?.data?.message||"Student updated")
             })
-            .catch(() => {
+            .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
-                }))
-                toast.error("Something is wrong")
+                }));
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Something is wrong")
             })
 
     }

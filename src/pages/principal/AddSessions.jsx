@@ -20,10 +20,17 @@ const AddSessions = () => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.success(`Session added`);
+                toast.success(res?.data?.message||`Session added`);
             }).catch(err => {
                 console.log(err.message)
-                toast.error("Somthing is wrong")
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Somthing is wrong")
             })
     }
     return (<div>

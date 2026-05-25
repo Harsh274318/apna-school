@@ -31,11 +31,12 @@ const PostCard = ({ item }) => {
     };
     function handleLike() {
         api.patch(`/social/post/${item._id}/like`)
-            .then(() => {
+            .then((res) => {
                 setLiked(prev => !prev);
                 setLikesCount(prev => liked ? prev - 1 : prev + 1);
+                toast.success(res?.data?.message||"")
             })
-            .catch(err => toast.error(err?.message || "Something is wrong"));
+            .catch(err => toast.error(err?.response?.data?.err || "Something is wrong"));
     }
 
     function handleComment(e) {
@@ -49,29 +50,29 @@ const PostCard = ({ item }) => {
                 const updated = res.data.data;
                 if (Array.isArray(updated)) setComments(updated);
                 commentRef.current.value = "";
-                toast.success("Comment added");
+                toast.success(res?.data?.message||"Comment added");
             })
-            .catch(err => toast.error(err?.message || "Something is wrong"));
+            .catch(err => toast.error(err?.response?.data?.err || "Something is wrong"));
     }
     function handleDeletePost() {
         api.delete(`/social/post/${item._id}`)
-            .then(() => {
-                toast.success("Post deleted");
+            .then((res) => {
+                toast.success(res?.data?.message||"Post deleted");
                 // posts list se remove karo
                 setApiData(prev => ({
                     ...prev,
                     posts: prev.posts.filter(p => p._id !== item._id)
                 }))
             })
-            .catch(err => toast.error(err?.message || "Something is wrong"));
+            .catch(err => toast.error(err?.response?.data?.err || "Something is wrong"));
     }
     function handleDeleteComment(commentId) {
         api.delete(`/social/post/${item._id}/${commentId}/comment`)
-            .then(() => {
+            .then((res) => {
                 setComments(prev => prev.filter(c => c._id.toString() !== commentId.toString()));
-                toast.success("Comment deleted");
+                toast.success(err?.response?.data?.err||"Comment deleted");
             })
-            .catch(err => toast.error(err?.message || "Something is wrong"));
+            .catch(err => toast.error(err?.response?.data?.err || "Something is wrong"));
     }
     return (
         <div className="post-card">

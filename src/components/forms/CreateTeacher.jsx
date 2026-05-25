@@ -98,7 +98,7 @@ const CreateTeacher = () => {
                 }
             ))
 
-            toast.success("Teacher created successfully")
+            toast.success(res?.data?.message||"Teacher created successfully")
         })
             .catch(err => {
                 setApiData(prev => (
@@ -106,7 +106,14 @@ const CreateTeacher = () => {
                         ...prev, loading: false
                     }
                 ))
-                toast.error(err?.message || "Somethig is Worng")
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err || "Somethig is Worng")
             })
 
     }

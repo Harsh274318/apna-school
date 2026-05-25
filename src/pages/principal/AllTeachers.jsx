@@ -20,14 +20,21 @@ const AllTeachers = () => {
         setApiData(prev => ({
           ...prev, loading: false
         }));
-        toast.success("All teachers found");
+        toast.success(res?.data?.message||"All teachers found");
       }
       )
       .catch(err => {
         setApiData(prev => ({
           ...prev, loading: false
         }));
-        toast.error("teachers not found");
+         if (err?.response?.status === 401) {
+                            localStorage.removeItem("token");
+        
+                            toast.error("login again");
+                            navigate("/login");
+                            return;
+                        }
+        toast.error(err?.response?.data?.err||"teachers not found");
       })
     // .finally()
   }, [])

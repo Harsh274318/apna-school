@@ -55,12 +55,12 @@ const AllStudents = () => {
                     students: prev.students.filter(s => s?.userId?.email !== email)
                 }))
                 setShow(!show)
-                toast.success("Student deleted!")
+                toast.success(res?.data?.message||"Student deleted!")
 
             })
             .catch(() => {
                 setApiData(prev => ({ ...prev, loading: false }))
-                toast.error("Student not deleted!")
+                toast.error(err?.response?.data?.err||"Student not deleted!")
             })
     }
 

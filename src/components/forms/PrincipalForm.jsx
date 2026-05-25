@@ -34,7 +34,14 @@ const PrincipalForm = () => {
             })
             .catch(err => {
                 console.log(err.message)
-                toast.error(err.message)
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err)
             })
             .finally(setIsload(false))
 

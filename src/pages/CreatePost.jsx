@@ -55,11 +55,18 @@ const CreatePost = () => {
           titleRef.current.value = suggestion.title
           typeText(description.current, suggestion.description, 100);
         }
-        toast.success("AI suggest")
+        toast.success(res?.data?.message || "AI suggest")
       })
-      .catch(() => {
-        toast.error("AI error")
+      .catch((err) => {
         setDisable(false)
+         if (err?.response?.status === 401) {
+                            localStorage.removeItem("token");
+        
+                            toast.error("login again");
+                            navigate("/login");
+                            return;
+                        }
+        toast.error(err?.response?.data?.err || "AI error")
       })
       .finally(() => {
         setLoadingAI(false);
@@ -136,7 +143,7 @@ const CreatePost = () => {
         <textarea name=""
           placeholder="Description"
           ref={description}
-          id="" />
+          id="textarea" />
         {notStudent &&
           <label htmlFor="image">
             {imageSelected

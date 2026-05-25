@@ -43,8 +43,14 @@ const LoginForm = () => {
 
             })
             .catch((err) => {
-                console.log(err.message);
-                toast.error(err.response?.data?.message || "Login failed");
+                console.log(err?.response?.data?.err);
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err || "Login failed");
             })
             .finally(() => {
                 obj.setApiData(prev => ({ ...prev, loading: false }))

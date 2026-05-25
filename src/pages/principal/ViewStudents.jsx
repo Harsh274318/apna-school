@@ -26,11 +26,19 @@ const ViewStudents = () => {
                 setApiData(prev => ({
                     ...prev, loading: false, data: res.data.data
                 }))
+                toast.success(res?.data?.message || "Student founded")
             }).catch(err => {
                 setApiData(prev => ({
                     ...prev, loading: false
-                }))
-                toast.error("Student not found")
+                }));
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err || "Student not found")
                 console.log(err.message)
             })
     }
@@ -38,9 +46,9 @@ const ViewStudents = () => {
 
         <div className="search-container">
             <label htmlFor="student">Roll</label>
-            <input type="number" min={100} id="student" className='Hclass' ref={rollNumberRef} placeholder='Ex: 121'/>
+            <input type="number" min={100} id="student" className='Hclass' ref={rollNumberRef} placeholder='Ex: 121' />
             <label htmlFor="class">class</label>
-            <input type="text" id='class' className='Hclass' ref={classRef} inputMode="numeric" min={1} max={12} placeholder='Ex: 1'/>
+            <input type="text" id='class' className='Hclass' ref={classRef} inputMode="numeric" min={1} max={12} placeholder='Ex: 1' />
             <select name="session" id="session" ref={sessionRef} className='selectStyle'>
                 <option value="">--session--</option>
                 <option value="2026-27">2026-27</option>

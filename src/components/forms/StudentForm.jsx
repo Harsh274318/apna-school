@@ -56,13 +56,20 @@ const StudentForm = () => {
         }
 
         api.post('/student-query', payload)
-            .then(() => {
-                toast.success("Student registered successfully!");
+            .then((res) => {
+                toast.success(res?.data?.message||"Student registered successfully!");
                 setState(prev => ({ ...prev, loading: false }));
             })
-            .catch(() => {
-                toast.error("Somthing is wrong!");
+            .catch((err) => {
                 setState(prev => ({ ...prev, loading: false }));
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Somthing is wrong!");
             })
 
     }

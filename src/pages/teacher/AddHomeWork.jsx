@@ -39,20 +39,27 @@ const AddHomeWork = () => {
             ...prev, loading: true
         }))
         api.post("/teacher/homework", { homeWork: cleaned })
-            .then(() => {
+            .then((res) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
                 setHomeworks([
                     { title: "", description: "" }
                 ])
-                toast.success("Homework added successfully")
+                toast.success(res?.data?.message||"Homework added successfully")
             })
-            .catch(() => {
+            .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.error("Something is wrong")
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Something is wrong")
             })
 
     }

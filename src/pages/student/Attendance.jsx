@@ -13,11 +13,18 @@ const Attendance = () => {
             .then(res => {
                 setApiData(prev => ({ ...prev, loading: false }))
                 setAttendance(res.data.data.reverse());
-                toast.success("Attendance loaded!");
+                toast.success(res?.data?.message||"Attendance loaded!");
             })
-            .catch(() => {
+            .catch((err) => {
                 setApiData(prev => ({ ...prev, loading: false }))
-                toast.error("Attendance not found");
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Attendance not found");
             })
     }, [])
     function capitalize(str) {

@@ -122,7 +122,7 @@ const CreateStudent = () => {
                 fileRef.current.value = ""
                 document.querySelectorAll('input[name="gender"]').forEach(r => r.checked = false);
                 document.querySelectorAll('input[name="notify"]').forEach(r => r.checked = false);
-                toast.success("Student created successfully");
+                toast.success(res?.data?.message||"Student created successfully");
             })
             .catch(err => {
                 setApiData(prev => ({
@@ -130,7 +130,14 @@ const CreateStudent = () => {
                 }))
                 emailRef.current.readOnly = false
                 nameRef.current.readOnly = false
-                toast.error("Something is wrong")
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Something is wrong")
             })
 
     }

@@ -29,7 +29,7 @@ const UpdatePassword = () => {
         }))
         api.patch("/user/update-password", data)
             .then(res => {
-                toast.success("Password Updated");
+                toast.success(res?.data?.message || "Password Updated");
                 oldPasswordRef.current.value = ""
                 newPasswordRef.current.value = ""
                 setApiData(prev => ({
@@ -37,10 +37,17 @@ const UpdatePassword = () => {
                 }))
             })
             .catch(err => {
-                toast.error(err.response?.data?.message || "Something is wrong")
                 setApiData(prev => ({
                     ...prev, loading: false
-                }))
+                }));
+                if (err?.response?.status === 401) {
+                    localStorage.removeItem("token");
+
+                    toast.error("login again");
+                    navigate("/login");
+                    return;
+                }
+                toast.error(err.response?.data?.message || "Something is wrong")
             })
 
     }

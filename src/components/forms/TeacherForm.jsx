@@ -64,13 +64,20 @@ const TeacherForm = () => {
         }
         setApiData(prev => ({ ...prev, loading: true }))
         api.post("/teacher-query", data)
-            .then(() => {
+            .then((res) => {
                 setApiData(prev => ({ ...prev, loading: false }))
-                toast.success("Query sent successfully")
+                toast.success(res?.data?.message || "Query sent successfully")
             })
-            .catch(() => {
-                setApiData(prev => ({ ...prev, loading: false }))
-                toast.error("Something is wrong");
+            .catch((err) => {
+                setApiData(prev => ({ ...prev, loading: false }));
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err || "Something is wrong");
             })
 
 

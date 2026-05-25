@@ -691,3 +691,11 @@
     padding: 20px 15px;
   }
 }
+#textarea {
+  resize: vertical;
+  width: 320px;
+  max-width: 320px;
+  min-width: 100px;
+  max-height: 300px;
+  min-height: 100px;
+}

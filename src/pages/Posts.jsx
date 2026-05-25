@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 import PostCard from "./PostCard.jsx";
 import Loading from "../components/forms/Loading.jsx";
 import Context from "../components/context/Context.jsx";
+import { useNavigate } from "react-router-dom";
 
 const categories = ["all", "study", "announcement", "news", "student", "general"];
 
 const Posts = () => {
     const { apiData, setApiData } = useContext(Context);
     const [active, setActive] = useState("all");
-
+    const navigate = useNavigate()
     useEffect(() => {
         setApiData(prev => ({ ...prev, loading: true }));
         api.get("/social/posts")
@@ -23,7 +24,14 @@ const Posts = () => {
             })
             .catch(err => {
                 setApiData(prev => ({ ...prev, loading: false }));
-                toast.error(err?.message || "Something is wrong");
+                if (err?.response?.status === 401) {
+                    localStorage.removeItem("token");
+
+                    toast.error("login again");
+                    navigate("/login");
+                    return;
+                }
+                toast.error(err?.response?.data?.err || "Something is wrong");
             });
     }, []);
 

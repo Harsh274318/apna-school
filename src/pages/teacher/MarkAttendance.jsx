@@ -27,18 +27,25 @@ const MarkAttendance = () => {
             ...prev, loading: true
         }))
         api.post("/teacher/attendance", { records })
-            .then(() => {
+            .then((res) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
                 setSend(true)
-                toast.success("Attendance marked")
+                toast.success(res?.data?.message||"Attendance marked")
             })
-            .catch(() => {
+            .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.error("Something is wrong in Attendance")
+                 if (err?.response?.status === 401) {
+                                    localStorage.removeItem("token");
+                
+                                    toast.error("login again");
+                                    navigate("/login");
+                                    return;
+                                }
+                toast.error(err?.response?.data?.err||"Something is wrong in Attendance")
             })
 
     }
@@ -53,13 +60,13 @@ const MarkAttendance = () => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.success("Email sended");
+                toast.success(res?.data?.message||"Email sended");
             })
-            .catch(() => {
+            .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.error("Something is wrong in email")
+                toast.error(err?.response?.data?.err||"Something is wrong in email")
             })
 
     }
@@ -75,11 +82,11 @@ const MarkAttendance = () => {
                             ...acc,
                             [s._id]: "present"
                         }), {}))
-                    toast.success("All students")
+                    toast.success(res?.data?.message||"All students")
                 })
-                .catch(() => {
+                .catch((err) => {
                     setApiData(prev => ({ ...prev, loading: false }))
-                    toast.error("Students not found!")
+                    toast.error(err?.response?.data?.err||"Students not found!")
                 })
         }
     }, [])

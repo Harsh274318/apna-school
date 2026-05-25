@@ -51,7 +51,7 @@ const PublicPost = () => {
                 setApiData(prev => ({
                     prev, loading: false
                 }))
-                toast.error("Post not Found")
+                toast.error(err?.response?.data?.err||"Post not Found")
             })
 
 
