@@ -6,10 +6,12 @@ import Context from '../context/Context.jsx';
 import api from '../../api.js';
 import { useNavigate } from 'react-router-dom';
 import { RxCross2 } from 'react-icons/rx';
+import { CgProfile } from 'react-icons/cg';
 
 const CreateStudent = () => {
-    const [flag, setFlag] = useState(false)
+    const [flag, setFlag] = useState(false);
     const [isOtp, setIsOtp] = useState(false);
+    const [preview, setPreview] = useState("")
     const { apiData, setApiData } = useContext(Context)
     const navigate = useNavigate()
     const nameRef = useRef();
@@ -122,7 +124,7 @@ const CreateStudent = () => {
                 fileRef.current.value = ""
                 document.querySelectorAll('input[name="gender"]').forEach(r => r.checked = false);
                 document.querySelectorAll('input[name="notify"]').forEach(r => r.checked = false);
-                toast.success(res?.data?.message||"Student created successfully");
+                toast.success(res?.data?.message || "Student created successfully");
             })
             .catch(err => {
                 setApiData(prev => ({
@@ -130,14 +132,14 @@ const CreateStudent = () => {
                 }))
                 emailRef.current.readOnly = false
                 nameRef.current.readOnly = false
-                 if (err?.response?.status === 401) {
-                                    localStorage.removeItem("token");
-                
-                                    toast.error("login again");
-                                    navigate("/login");
-                                    return;
-                                }
-                toast.error(err?.response?.data?.err||"Something is wrong")
+                if (err?.response?.status === 401) {
+                    localStorage.removeItem("token");
+
+                    toast.error("login again");
+                    navigate("/login");
+                    return;
+                }
+                toast.error(err?.response?.data?.err || "Something is wrong")
             })
 
     }
@@ -154,29 +156,44 @@ const CreateStudent = () => {
                 <label htmlFor="email">Email:</label>
                 <input type="email" name="email" id="email" placeholder='student12@gmail.com' ref={emailRef} required />
                 <button type='button' disabled={isOtp} onClick={handelOTP}>Send otp</button>
-                {isOtp && <><label htmlFor="otp">OTP</label>
-                    <input type="text" inputMode="numeric" maxLength={6} ref={otpRef} placeholder='123456' required />
-                    <label htmlFor="password">Password</label>
-                    <div className="password-div">
-                        <input
-                            type={flag ? "text" : "password"}
-                            id="password"
-                            ref={passwordRef}
-                            className="passwordinput"
-                            placeholder="H@rash123"
-                        />
-                        <span id="toggle" onClick={() => setFlag(!flag)}>
-                            {flag ? (
-                                <GiEyeOfHorus className="close" />
-                            ) : (
-                                <GiEyelashes className="close" />
-                            )}
-                        </span>
+                {isOtp && <>
+                    <div className='student_otp_pass'>
+                        <div>
+                            <label htmlFor="otp">OTP</label>
+                            <input type="text" inputMode="numeric" maxLength={6} ref={otpRef} placeholder='123456' required />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password</label>
+                            <div className="password-div">
+                                <input
+                                    type={flag ? "text" : "password"}
+                                    id="password"
+                                    ref={passwordRef}
+                                    className="passwordinput"
+                                    placeholder="H@rash123"
+                                />
+                                <span id="toggle" onClick={() => setFlag(!flag)}>
+                                    {flag ? (
+                                        <GiEyeOfHorus className="close" />
+                                    ) : (
+                                        <GiEyelashes className="close" />
+                                    )}
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                    <label htmlFor="dob">Date of Birth</label>
-                    <input type="date" max={maxDate} ref={dobRef} />
-                    <label htmlFor="roll">Roll Number</label>
-                    <input type="text" inputMode="numeric" maxLength={2} name="roll" id="roll" placeholder='21' ref={rollRef} required />
+                    <div className='Student_dob_roll'>
+                        <div>
+
+                            <label htmlFor="dob">Date of Birth</label>
+                            <input type="date" max={maxDate} ref={dobRef} />
+                        </div>
+                        <div>
+
+                            <label htmlFor="roll">Roll Number</label>
+                            <input type="text" inputMode="numeric" maxLength={2} name="roll" id="roll" placeholder='21' ref={rollRef} required />
+                        </div>
+                    </div>
                     <label htmlFor="father">Father's Name</label>
                     <input type="text" ref={fatherRef} placeholder='Father name' required />
                     <label htmlFor="mobile">Mobile</label>
@@ -189,31 +206,53 @@ const CreateStudent = () => {
                         ref={mobileRef}
                         required
                     />
-                    <p>Notify Method</p>
-                    <div className="category-pill">
-                        <label htmlFor="sms">SMS
-                            <input type="radio" name="notify" id="sms" value="sms" style={{ display: "none" }} />
-                        </label>
-                        <label htmlFor="Memail">Email
-                            <input type="radio" name="notify" id="Memail" value="email" style={{ display: "none" }} />
-                        </label>
-                    </div>
-                    <p>Gender</p>
-                    <div className="category-pill">
-                        <label htmlFor="male">male
-                            <input type="radio" name="gender" id="male" value="male" style={{ display: "none" }} />
-                        </label>
+                    <div className='pills-div'>
+                        <div>
 
-                        <label htmlFor="female">female
-                            <input type="radio" name="gender" id="female" value="female" style={{ display: "none" }} />
-                        </label>
+                            <p style={{ fontSize: "13px", fontWeight: "700", color: "#64748b", marginBottom: "2px" }}>Notify Method</p>
+                            <div className="category-pill">
+                                <label htmlFor="sms">SMS
+                                    <input type="radio" name="notify" id="sms" value="sms" style={{ display: "none" }} />
+                                </label>
+                                <label htmlFor="Memail">Email
+                                    <input type="radio" name="notify" id="Memail" value="email" style={{ display: "none" }} />
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+
+                            <p style={{ fontSize: "13px", fontWeight: "700", color: "#64748b", marginBottom: "2px" }}>Gender</p>
+                            <div className="category-pill">
+                                <label htmlFor="male">male
+                                    <input type="radio" name="gender" id="male" value="male" style={{ display: "none" }} />
+                                </label>
+
+                                <label htmlFor="female">female
+                                    <input type="radio" name="gender" id="female" value="female" style={{ display: "none" }} />
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <label htmlFor="address">Address</label>
                     <input type="text" ref={addressRef} id='address' required />
-                    <label htmlFor="image">
-                        <CiImageOn className="image-icon" /> Add image
-                        <input type="file" name="image" accept="image/*" id="image" ref={fileRef} style={{ display: "none" }} />
-                    </label>
+                    <div className='Student_imageSection'>
+
+                        <div>
+                            <p style={{ fontSize: "13px", fontWeight: "700", color: "#ef3e16", marginBottom: "2px" }}>Max size 3 MB</p>
+                            <label htmlFor="image" className='StudentImage'>
+                                <CiImageOn className="image-icon" /> Add image
+                                <input type="file" name="image" accept="image/*" id="image" ref={fileRef}
+                                    onChange={(e) => {
+                                        const file = e.target.files[0]
+                                        if (file) {
+                                            setPreview(URL.createObjectURL(file))
+                                        }
+                                    }}
+                                    style={{ display: "none" }} />
+                            </label>
+                        </div>
+                        <div className='preview'>{preview ? <img src={preview} alt="" /> : <CgProfile />}</div>
+                    </div>
                     <button type='submit'>Create</button>
 
                 </>}
