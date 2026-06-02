@@ -32,20 +32,20 @@ const MarkAttendance = () => {
                     ...prev, loading: false
                 }))
                 setSend(true)
-                toast.success(res?.data?.message||"Attendance marked")
+                toast.success(res?.data?.message || "Attendance marked")
             })
             .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                 if (err?.response?.status === 401) {
-                                    localStorage.removeItem("token");
-                
-                                    toast.error("login again");
-                                    navigate("/login");
-                                    return;
-                                }
-                toast.error(err?.response?.data?.err||"Something is wrong in Attendance")
+                if (err?.response?.status === 401) {
+                    localStorage.removeItem("token");
+
+                    toast.error("login again");
+                    navigate("/login");
+                    return;
+                }
+                toast.error(err?.response?.data?.err || "Something is wrong in Attendance")
             })
 
     }
@@ -56,17 +56,17 @@ const MarkAttendance = () => {
             ...prev, loading: true
         }))
         api.post("/notify/absent-students")
-            .then(() => {
+            .then((res) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.success(res?.data?.message||"Email sended");
+                toast.success(res?.data?.message || "Email sended");
             })
             .catch((err) => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                toast.error(err?.response?.data?.err||"Something is wrong in email")
+                toast.error(err?.response?.data?.err || "Something is wrong in email")
             })
 
     }
@@ -82,11 +82,11 @@ const MarkAttendance = () => {
                             ...acc,
                             [s._id]: "present"
                         }), {}))
-                    toast.success(res?.data?.message||"All students")
+                    toast.success(res?.data?.message || "All students")
                 })
                 .catch((err) => {
                     setApiData(prev => ({ ...prev, loading: false }))
-                    toast.error(err?.response?.data?.err||"Students not found!")
+                    toast.error(err?.response?.data?.err || "Students not found!")
                 })
         }
     }, [])
@@ -102,7 +102,7 @@ const MarkAttendance = () => {
             <button onClick={() => handalSorting("rollNumber")}>Roll No ↑↓</button>
             <button onClick={() => handalSorting("userId", "name")}>Name A-Z</button>
         </div>
-        {console.log(apiData.students)}
+        {/*{console.log(apiData.students)}*/}
         {!apiData.loading && apiData.students && apiData.students.map(item => (
             <div className="student-attendance" key={item._id}>
                 <div className="att-left">
