@@ -60,7 +60,6 @@ const MarkAttendance = () => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
-                useState(false)
                 toast.success(res?.data?.message || "Email sended");
             })
             .catch((err) => {
