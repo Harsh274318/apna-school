@@ -38,6 +38,7 @@ const MarkAttendance = () => {
                 setApiData(prev => ({
                     ...prev, loading: false
                 }))
+                if (err?.response?.status === 500) return toast.error("somtheing is wrong")
                 if (err?.response?.status === 401) {
                     localStorage.removeItem("token");
 
